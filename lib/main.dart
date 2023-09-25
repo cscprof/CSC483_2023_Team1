@@ -44,8 +44,8 @@ class MainApp extends StatelessWidget {
                 'Normal text',
                 style: TextStyle(fontStyle: FontStyle.italic)),
               Text(
-                'Size of text is 25',
-                style: TextStyle(fontSize: 25.0)),
+                'Size of text is 30',
+                style: TextStyle(fontSize: 30.0)),
               Text(
                 'Italic, size 50 and BOLD',
                 style: TextStyle(
@@ -59,7 +59,7 @@ class MainApp extends StatelessWidget {
 
         // want to add a bottom sheet of some sort, but confused on 
         // what onClosing is and how to use it
-        
+
         /*bottomSheet: BottomSheet(
           backgroundColor: Colors.yellow[400],
           shadowColor: Colors.blue[300],
