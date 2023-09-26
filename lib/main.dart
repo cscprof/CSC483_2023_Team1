@@ -12,8 +12,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green[300],
-          shadowColor: Colors.blue[300],
+          backgroundColor: const Color.fromARGB(255, 200, 147, 210),
+          shadowColor: Colors.red[400],
           title: Title(
             color: Colors.black,
             title: "Testing Page",
