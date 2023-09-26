@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('THIS IS THE MAIN PAGE'),
+                Text('THIS IS THE MAIN PAGE - Angela'),
                 Spacer(flex: 5),
                 Tab(icon: Icon(Icons.airplane_ticket)),
                 Spacer(),
