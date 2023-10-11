@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'screens/login.dart';
-//import 'screens/home.dart';
-//import 'screens/order.dart';
+//import 'screens/login.dart';
+import 'screens/home.dart';
+import 'screens/order.dart';
 
 void main() {
   // initialize firebase
   // run the app, starting at login.dart
   // 
 
-  runApp(LoginPage()); // insert class name
+  runApp(const HomePage()); // insert class name
 }
 
 // class MainApp extends StatelessWidget {
