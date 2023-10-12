@@ -1,38 +1,29 @@
 import 'package:flutter/material.dart';
+import 'widgets/HeaderBar.dart';
+import 'widgets/BottomBar.dart';
 
 class OrderPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'OrderPage',
-      home: const OrderPage(),
-    );
-  }
-}
-
-class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
 
   @override
-  _OrderPageState createState() => _OrderPageState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: TopAppBar(AppBar(), "Start New Order", Colors.yellow, Colors.black),
+      body: Center(
+        child: ListView(
+          padding: const EdgeInsets.all(10.0),
+          children: [],
+        ),
+        ),
+        bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+      )
+      );
+  }
 }
 
-class _OrderPageState extends State<OrderPage> {
-  final List<String> items = [
-    'Entree', 
-    'Sides',
-    'Fruit',
-    'Dessert',
-    'Drinks'
-  ];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Start New Order'),
-      ),
-      body: ListView.builder(
+/* ListView.builder(
         itemCount: items.length,
         itemBuilder: (BuildContext context) {
           return ListTile(
@@ -45,8 +36,4 @@ class _OrderPageState extends State<OrderPage> {
             onTap: () {}
           )
         }
-      )
-    )
-  }
-
-}
+      ), */
