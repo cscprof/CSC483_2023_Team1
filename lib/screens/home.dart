@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login.dart'; // Import the Order.dart file
-import 'widgets/headerBar.dart';
+import 'widgets/HeaderBar.dart';
+import 'widgets/BottomBar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -63,7 +64,8 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ), 
+        bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
       ),
     );
   }
