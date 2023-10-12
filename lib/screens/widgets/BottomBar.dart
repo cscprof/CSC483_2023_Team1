@@ -1,3 +1,11 @@
+/* ------------------------------------------------------------
+  10-12/23
+  This code NEEDS to be refactored. Set up for just the home page 
+  to be able to navigate whenever its ready. Every currently planned 
+  page has a bottom bar for it. Please make this code much more
+  clearner to work with in the near future.
+
+-------------------------------------------------------------- */
 import 'package:flutter/material.dart';
 
 enum WhichPage { home, checkout, order, subCat, menu }
@@ -12,10 +20,20 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
   
   BottomBar(this.appBar, this.whichPage, {super.key});
   
-  int index = 0;
-  
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = 0;
+    void onItemTapped(int index) {
+      // navigate pages with this
+      if (index == 0) {
+        print('Home Button Pressed!!!');
+      } else if (index == 1) {
+        print('Menu Button Pressed!!!');
+      } else if (index == 2) {
+        print('Cart Button Pressed!!!');
+      }
+    }
+    
     if (whichPage == WhichPage.home || whichPage == WhichPage.order || whichPage == WhichPage.subCat) {
       // assign the home, menu and cart buttons
       return BottomNavigationBar(
@@ -24,9 +42,10 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
           menuBTN(),
           cartBTN(), 
         ],
-        //currentIndex: index, // this is how we use the bottom bar
-        backgroundColor: backgroundColor,
+        currentIndex: selectedIndex, // this is how we use the bottom bar
+        backgroundColor: Colors.green[800],
         fixedColor: Colors.grey[400],
+        onTap: onItemTapped,
       );
     } else if (whichPage == WhichPage.checkout) {
       // home, checkout buttons
@@ -48,6 +67,7 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
       );
     } else {
       // default, home, menu, cart buttons
+      print('Did not find with enum');
       return BottomNavigationBar(
         items:  [
           homeBTN(),
@@ -72,15 +92,15 @@ BottomNavigationBarItem homeBTN () {
 
 BottomNavigationBarItem menuBTN () {
   return const BottomNavigationBarItem(
-    icon: Icon(Icons.shopping_cart),
-    label: 'Cart',
+    icon: Icon(Icons.menu),
+    label: 'Menu',
   );
 }
 
 BottomNavigationBarItem cartBTN () {
   return const BottomNavigationBarItem(
-    icon: Icon(Icons.menu),
-    label: 'Menu',
+    icon: Icon(Icons.shopping_cart),
+    label: 'Cart',
   );
 }
 
