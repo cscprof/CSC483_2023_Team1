@@ -8,6 +8,7 @@ class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Order Page",
       home: Scaffold(
         appBar: TopAppBar(AppBar(), "Start New Order", Colors.yellow, Colors.black),
       body: Center(

@@ -1,8 +1,5 @@
-import 'package:brig_project/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'widgets/headerBar.dart';
-
-
 
 
 class LoginPage extends StatelessWidget {
@@ -21,9 +18,7 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(fontSize: 30),
               ),
             
-            
              const SizedBox(
-              
               width: 250,
              child: TextField(
              obscureText: true,
@@ -32,7 +27,6 @@ class LoginPage extends StatelessWidget {
              labelText: 'User ID:',
                   ),
                  ),
-                 
                ),
                 const SizedBox(
               width: 250,
@@ -44,7 +38,6 @@ class LoginPage extends StatelessWidget {
                   ),
                  ),
                ),
-               
               ElevatedButton(
                style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.yellow),
@@ -52,10 +45,6 @@ class LoginPage extends StatelessWidget {
                 child: const Text('Sign In'),
                onPressed: ()
                 {
-               Navigator.push(
-                   context, 
-                 MaterialPageRoute(builder: (context) => HomePage())
-               );
                 },
               ),      
               ElevatedButton(
@@ -63,19 +52,11 @@ class LoginPage extends StatelessWidget {
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.yellow),
                 ),
                 child: const Text('Lost ID Card?'),
-                
                onPressed: ()
                 {
-                   Navigator.push(
-                   context, 
-                 MaterialPageRoute(builder: (context) => HomePage())
-               );
                 },
               ),
-              //test
-              
             ],  
-
           ),
         ),
       )
@@ -92,10 +73,4 @@ class LoginPage extends StatelessWidget {
 }
 
       
-
-
-    
-  
-
-
 
