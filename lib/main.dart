@@ -19,10 +19,9 @@ Future<void> main() async {
   // run the app, starting at login.dart
   // 
 
-  runApp(const HomePage()); // insert class name
+  runApp(const OrderPage()); // insert class name
 }
 // // ------------------ RUN TO SEE GENERAL PAGES ------------------ //
 // void main() {
 //   runApp(const HomePage());
 // }
-

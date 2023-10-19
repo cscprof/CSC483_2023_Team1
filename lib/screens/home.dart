@@ -1,3 +1,4 @@
+import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
 import 'settings.dart'; // Import the Order.dart file
 import 'widgets/HeaderBar.dart';
@@ -69,7 +70,7 @@ class HomePage extends StatelessWidget {
                                   // Navigate to a new order screen
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => SettingsPage()),
+                                    MaterialPageRoute(builder: (context) => const OrderPage()),
                                   );
                                 },
                                 child: const Text('New Order'),
