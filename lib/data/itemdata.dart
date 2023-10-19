@@ -7,27 +7,27 @@ class ItemData {
   ItemData() {
     menuItems.add({
       'title': 'Entrees',
-      'image': 'lib/images/burger.png',
+      'image': 'images/burger.png',
     });
 
     menuItems.add({
       'title': 'Sides',
-      'image': 'lib/images/fries.png',
+      'image': 'images/fries.png',
     });
 
     menuItems.add({
       'title': 'Fruit',
-      'image': 'lib/images/apple.png',
+      'image': 'images/apple.png',
     });
 
     menuItems.add({
       'title': 'Dessert',
-      'image': 'lib/images/granola.png',
+      'image': 'images/granola.png',
     });
 
     menuItems.add({
       'title': 'Drinks',
-      'image': 'lib/images/drinks.png',
+      'image': 'images/drinks.png',
     });
   }
 }
