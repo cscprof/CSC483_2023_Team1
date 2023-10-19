@@ -1,5 +1,5 @@
 
-import 'package:brig_project/screens/login.dart';
+import 'package:brig_project/screens/settings.dart';
 import 'package:flutter/material.dart';
 
 
@@ -25,9 +25,8 @@ class TopAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: ElevatedButton(
         onPressed: () {
           Navigator.push(
-            
             context, 
-            MaterialPageRoute(builder: (context) => LoginPage())
+            MaterialPageRoute(builder: (context) => SettingsPage())
           );
         },
         style: ElevatedButton.styleFrom(

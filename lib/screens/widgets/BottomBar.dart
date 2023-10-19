@@ -6,12 +6,14 @@
   clearner to work with in the near future.
 
 -------------------------------------------------------------- */
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum WhichPage { home, checkout, order, subCat, menu }
 
 class BottomBar extends StatelessWidget implements PreferredSizeWidget {
-  Color backgroundColor = Colors.purple;
+  Color backgroundColor = Colors.yellow;
   Color shadowColor = Colors.black;
   Color textColor = Colors.white;
   //String textInput = "testing";
@@ -33,55 +35,26 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
         print('Cart Button Pressed!!!');
       }
     }
-    
-    if (whichPage == WhichPage.home || whichPage == WhichPage.order || whichPage == WhichPage.subCat) {
-      // assign the home, menu and cart buttons
       return BottomNavigationBar(
-        items: [
-          homeBTN(), 
-          menuBTN(),
-          cartBTN(), 
-        ],
+        items: bottomNavigationItems(whichPage),
         currentIndex: selectedIndex, // this is how we use the bottom bar
-        backgroundColor: Colors.green[800],
-        fixedColor: Colors.grey[400],
-        onTap: onItemTapped,
+        backgroundColor: Colors.yellow,
+        fixedColor: Colors.grey[400], 
       );
-    } else if (whichPage == WhichPage.checkout) {
-      // home, checkout buttons
-      return BottomNavigationBar(
-        items: [
-          homeBTN(),
-          checkoutBTN(),
-        ],   
-        backgroundColor: Colors.blue[800],
-      );
-    } else if (whichPage == WhichPage.menu) {
-      // home, cart buttons
-      return BottomNavigationBar(
-        items:  [
-          homeBTN(),
-          cartBTN(),
-        ],
-        backgroundColor: Colors.red[700],
-      );
-    } else {
-      // default, home, menu, cart buttons
-      print('Did not find with enum');
-      return BottomNavigationBar(
-        items:  [
-          homeBTN(),
-          cartBTN(),
-          menuBTN(),
-        ],
-      );
-    }
   }
   
   @override
   Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
+List<BottomNavigationBarItem> bottomNavigationItems (WhichPage page) {
+  if (page == WhichPage.home || page == WhichPage.subCat || page == WhichPage.menu || page == WhichPage.order) {
+    return [homeBTN(), menuBTN(), cartBTN()];
+  } else if (page == WhichPage.checkout) {
+    return [homeBTN(), checkoutBTN(), cartBTN()];
+  }
+  return [homeBTN()];
+}
 
 BottomNavigationBarItem homeBTN () {
   return const BottomNavigationBarItem(

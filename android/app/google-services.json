@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "266295427213",
+    "project_id": "csc483-team1",
+    "storage_bucket": "csc483-team1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266295427213:android:45bd4afac1f49104eaa2c4",
+        "android_client_info": {
+          "package_name": "com.example.brig_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVx354ff1stkbzBIqgAYNBAi8a-1uJB-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

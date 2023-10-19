@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart'; // Import the Order.dart file
+import 'settings.dart'; // Import the Order.dart file
 import 'widgets/HeaderBar.dart';
 import 'widgets/BottomBar.dart';
 
@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                               // Navigate to a new order screen
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => LoginPage()),
+                                MaterialPageRoute(builder: (context) => SettingsPage()),
                               );
                             },
                             child: const Text('New Order'),
