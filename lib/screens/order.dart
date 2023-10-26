@@ -24,6 +24,7 @@ class OrderPage extends StatelessWidget {
       home: Scaffold(
         appBar: TopAppBar(AppBar(), "New Order"),
         body: const Column(children: [Expanded(flex: 1, child: ListViewBuilder()),],),
+        backgroundColor: const Color(0xffFEFFD8),
         bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
       )
       );
@@ -61,14 +62,18 @@ class ListViewBuilder extends StatelessWidget {
           //       color: Colors.black,)
           // ]
           ListTile(
-            // tileColor: Colors.blueAccent,
-            title: Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black), textAlign: TextAlign.center,),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
-            leading: CircleAvatar(backgroundImage: AssetImage(item['image']),),
+            tileColor: const Color(0xfffeffe8),
+            title: Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)), textAlign: TextAlign.center,),
+            trailing: const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xff2D2D2D),),
+            leading: ClipRRect(borderRadius: BorderRadius.circular(35), 
+              child: Image.asset(item['image'], width: 50, height: 50),),
             contentPadding: const EdgeInsets.all(20.0),
             onTap: () {
               debugPrint("Button pressed!");
             },
+            shape: const Border(
+              bottom: BorderSide(width: 1, color: Color(0xff2D2D2D)),
+            ),
             // onLongPress: () {debugPrint("Long pressed!");}
             ),
         ],
@@ -77,13 +82,3 @@ class ListViewBuilder extends StatelessWidget {
     );
   }
 }
-
-/* child: TextButton(
-            onPressed: () {}, 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Icon(),
-                Text(items[index], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),),
-                const Icon(Icons.arrow_forward_ios_rounded, color: Colors.black,)
-              ], */
