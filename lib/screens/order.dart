@@ -45,21 +45,34 @@ class ListViewBuilder extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         children: [
           for (var item in item.menuItems) ...[
-            Row(children: [
-              Image.asset(item['image'], height: 100, width: 100,),
-              Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),),
-              IconButton(onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));}, 
-                icon: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.black,))
-          ],),
-          const Divider(
-                height: 20,
-                thickness: 2,
-                indent: 0,
-                endIndent: 10,
-                color: Colors.black,)
-          ]
+          //   Row(children: [
+          //     Image.asset(item['image'], height: 50, width: 50,),
+          //     Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),),
+          //     IconButton(onPressed: () {
+          //       // Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));}, 
+          //       debugPrint("Button pressed!!");},
+          //       icon: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.black,))
+          // ],),
+          // const Divider(
+          //       height: 20,
+          //       thickness: 2,
+          //       indent: 0,
+          //       endIndent: 10,
+          //       color: Colors.black,)
+          // ]
+          ListTile(
+            // tileColor: Colors.blueAccent,
+            title: Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black), textAlign: TextAlign.center,),
+            trailing: const Icon(Icons.arrow_forward_ios_rounded),
+            leading: CircleAvatar(backgroundImage: AssetImage(item['image']),),
+            contentPadding: const EdgeInsets.all(20.0),
+            onTap: () {
+              debugPrint("Button pressed!");
+            },
+            // onLongPress: () {debugPrint("Long pressed!");}
+            ),
         ],
+        ]
       )
     );
   }
