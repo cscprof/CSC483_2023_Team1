@@ -15,6 +15,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
   print("Starting Page");
+
+  print("Still on Starting Page");
   // run the app, starting at login.dart
   // 
 
