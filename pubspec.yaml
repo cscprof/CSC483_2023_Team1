@@ -8,9 +8,10 @@ environment:
 
 dependencies:
   firebase_core: ^2.18.0
+  url_launcher: ^6.1.14
   flutter:
-    sdk: flutter
-     
+   sdk: flutter
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

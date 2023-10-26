@@ -1,3 +1,5 @@
+import 'package:brig_project/screens/login.dart';
+import 'package:brig_project/screens/notifications.dart';
 import 'package:flutter/material.dart';
 import 'widgets/HeaderBar.dart';
 //import 'widgets/BottomBar.dart';
@@ -5,36 +7,83 @@ import 'widgets/HeaderBar.dart';
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
 
-  Color? background = Colors.grey[400];
+  Color? background = const Color(0xffFEFFD4);
 
   @override 
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login Page',
-      color: Colors.yellow[200],
+      title: 'Settings',
       home: Scaffold(
-        appBar: TopAppBar(AppBar(), 'Settings', Colors.yellow[200], Colors.black),
+         appBar: TopAppBar(AppBar(), 'Settings', const Color(0xffCB9700),Colors.black),
         backgroundColor: background,
         body: Center(
           child: Column(
             verticalDirection: VerticalDirection.down,
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              OutlinedButton(
-                onPressed: () {
-                  print('Notifications Button Pressed!!!!');
+                 const SizedBox(height:50),
+
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: ElevatedButton.icon(
+              
+                style: const ButtonStyle(     
+       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
+      ),
+                onPressed: ()   {
+               Navigator.push(
+                   context, 
+                 MaterialPageRoute(builder: (context) => NotificationsPage())
+               );
+                print('Notifications Button Pressed');
                   background = Colors.red[300];
-                },
-                child: const Text('Notifications')
+                },            
+                icon: const Icon(
+                  Icons.arrow_back_ios_rounded,
+                 color:Color(0xff2D2D2D), 
+                ),
+                label: const Text(
+                  "Notification Settings",
+                    style: TextStyle(
+                  
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                    )
+                ),
               ),
-              const Spacer(flex: 1,),
-              OutlinedButton(
-                onPressed: () {
-                  print('Logout Button Pressed');
+            ),  
+             const Spacer(flex: 50),
+               Directionality(
+              textDirection: TextDirection.rtl,
+              child: ElevatedButton.icon(
+              
+                style: const ButtonStyle(     
+       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
+      ),
+                onPressed: ()   {
+               Navigator.push(
+                   context, 
+                 MaterialPageRoute(builder: (context) => const LoginPage())
+               );
+                 print('Logout Button Pressed');
                   background = Colors.blue[300];
-                },
-                child: const Text('Logout'),
+                },            
+                icon: const Icon(
+                  Icons.arrow_back_ios_rounded,
+                 color:Color(0xff2D2D2D), 
+                ),
+                label: const Text(
+                  "Log Out",
+                    style: TextStyle(
+                  
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                    )
+                ),
               ),
+            ),      
+           
               const Spacer(flex: 50),
             ],
           )
