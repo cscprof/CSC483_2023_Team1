@@ -13,7 +13,7 @@ import 'package:flutter/services.dart';
 enum WhichPage { home, checkout, order, subCat, menu }
 
 class BottomBar extends StatelessWidget implements PreferredSizeWidget {
-  Color backgroundColor = Colors.yellow;
+  Color ? backgroundColor = Colors.grey[400];
   Color shadowColor = Colors.black;
   Color textColor = Colors.white;
   //String textInput = "testing";
@@ -38,8 +38,8 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
       return BottomNavigationBar(
         items: bottomNavigationItems(whichPage),
         currentIndex: selectedIndex, // this is how we use the bottom bar
-        backgroundColor: Colors.yellow,
-        fixedColor: Colors.grey[400], 
+        backgroundColor: backgroundColor,
+        fixedColor: Colors.amber[300], 
       );
   }
   

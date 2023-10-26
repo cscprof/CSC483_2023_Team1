@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       title: 'Mobile Order Page',
       home: Scaffold(
-        appBar: TopAppBar(AppBar(), "Home Page", Colors.yellow, Colors.black),
+        appBar: TopAppBar(AppBar(), "Home Page", Colors.grey[400], Colors.black),
         body: Stack(
           children: [
             Container(
