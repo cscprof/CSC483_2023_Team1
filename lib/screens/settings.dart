@@ -13,7 +13,7 @@ class SettingsPage extends StatelessWidget {
       title: 'Login Page',
       color: Colors.yellow[200],
       home: Scaffold(
-        appBar: TopAppBar(AppBar(), 'Settings', Colors.yellow[200], Colors.black),
+        appBar: TopAppBar(AppBar(), 'Settings'),
         backgroundColor: background,
         body: Center(
           child: Column(

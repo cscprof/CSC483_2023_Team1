@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
     return MaterialApp( 
       title:"Login Page",
        home:Scaffold(
-        appBar: TopAppBar(AppBar(), "Login Page", Colors.yellow, Colors.black),
+        appBar: TopAppBar(AppBar(), "Login Page"),
          body: Center(
            child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

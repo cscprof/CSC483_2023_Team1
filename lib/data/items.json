@@ -1,0 +1,335 @@
+{
+    "drink": {
+        "Fountain Drink" : {
+            "item_ID" : 1001,
+            "price" : "1.75",
+            "type" : "drink",
+            "isSwipe" : true
+        },
+        "Powerade" : {
+            "item_ID" : 1002,
+            "price" : "3.00",
+            "type" : "drink",
+            "isSwipe" : false
+        }, 
+        "Minute Maid Juice" : {
+            "item_ID" : 1003,
+            "price" : "3", 
+            "type" : "drink",
+            "isSwipe" : false
+        }, 
+        "Coke Products" : {
+            "item_ID" : 1004,
+            "price" : "2.25",
+            "type" : "drink",
+            "isSwipe" : false
+        },
+        "Golden Peak Iced Tea" : {
+            "item_ID" : 1005,
+            "price" : "3.00",
+            "type" : "drink",
+            "isSwipe" : false
+        },
+        "Dunkin Coffee" : {
+            "item_ID" : 1006,
+            "price" : "3.25",
+            "type" : "drink",
+            "isSwipe" : false
+        },
+        "Monster Energy" : {
+            "item_ID" : 1007,
+            "price" : "3.50",
+            "type" : "drink",
+            "isSwipe" : false
+        },
+        "Monster Coffee" : {
+            "item_ID" : 1008,
+            "price" : "3.50",
+            "type" : "drink",
+            "isSwipe" : false
+        }, 
+        "Monster Big Can" : {
+            "item_ID" : 1009,
+            "price" : "3.75",
+            "type" : "drink",
+            "isSwipe" : false
+        }, 
+        "Smart Water Sport" : {
+            "item_ID" : 1010,
+            "price" : "3.00",
+            "type" : "drink",
+            "isSwipe" : false
+        },
+        "Smart Water 1L" : {
+            "item_ID" : 1011,
+            "price" : "3.50",
+            "type" : "drink",
+            "isSwipe" : false
+        }, 
+        "Vitamin Water" : {
+            "item_ID" : 1012,
+            "price" : "3.00",
+            "type" : "drink",
+            "isSwipe" : false
+        }, 
+        "Bottled Disani Water" : {
+            "item_ID" : 1013,
+            "price" : "2.25",
+            "type" : "drink",
+            "isSwipe" : false
+        },
+        "Milk" : {
+            "item_ID" : 1014,
+            "price" : "1.00",
+            "type" : "drink", 
+            "isSwipe" : true
+        }
+    }, 
+    "side" : {
+        "Muffins" : { 
+            "item_ID" : 1015,
+            "price" : "2.25",
+            "type" : "grabngo"
+        }, 
+        "Scones" : {
+            "item_ID" : 1016,
+            "price" : "3.00",
+            "type" : "grabngo"
+        },
+        "Big Cookie" : {
+            "item_ID" : 1017,
+            "price" : "2.50",
+            "type" : "grabngo"
+        }, 
+        "Big Brownies" : {
+            "item_ID" : 1018,
+            "price" : "2.50",
+            "type" : "grabngo"
+        },
+        "Candy Bar" : {
+            "item_ID" : 1019,
+            "price" : "1.75",
+            "type" : "grabngo"
+        },
+        "Cup Yogurt" : {
+            "item_ID" : 1020,
+            "price" : "1.50",
+            "type" : "grabngo"
+        }, 
+        "Granola Bar" : {
+            "item_ID" : 1021,
+            "price" : "1.25",
+            "type" : "grabngo"
+        }, 
+        "French Fries" : {
+            "item_ID" : 1023,
+            "price" : "2.00",
+            "type" : "grill",
+            "isSwipe" : true
+        },
+        "Small Soup Bowl" : {
+            "item_ID" : 1024,
+            "price" : "2.50",
+            "type" : "readytogo",
+            "isSwipe" : true
+        },
+        "Meatballs" : {
+            "item_ID" : 1025,
+            "price" : "3.70",
+            "type" : "pasta/sub",
+            "isSwipe" : true
+        },
+        "Bread Stick" : {
+            "item_ID" : 1026,
+            "price" : "1.30",
+            "type" : "pasta/sub",
+            "isSwipe" : true
+        },
+        "Amish Licorice" : {
+            "item_ID" : 1027,
+            "price" : "3.00",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        }, 
+        "Peanuts" : {
+            "item_ID" : 1034,
+            "price" : "0.75",
+            "type" : "Herr's Products",
+            "isSwipe" : false
+        }, 
+        "Pistachios" : {
+            "item_ID" : 1035,
+            "price" : "1.69",
+            "type" : "Herr's Products",
+            "isSwipe" : false
+        }, 
+        "Cashews" : {
+            "item_ID" : 1036,
+            "price" : "1.69",
+            "type" : "Herr's Products",
+            "isSwipe" : false
+        }, 
+        "Chips" : {
+            "item_ID" : 1067,
+            "price" : "2.50",
+            "type" : "Herr's Products",
+            "isSwipe" : false
+        }
+    }, 
+    "fruit" : {
+        "Red Apple" : {
+            "item_ID" : 1068,
+            "price" : "1.50",
+            "type" : "grabngo",
+            "isSwipe" : true
+        }, 
+        "Green Apple" : {
+            "item_ID" : 1069,
+            "price" : "1.50",
+            "type" : "grabngo",
+            "isSwipe" : true
+        }, 
+        "Bananna" : {
+            "item_ID" : 1070,
+            "price" : "1.50",
+            "type" : "grabngo",
+            "isSwipe" : true
+        }
+    }, 
+    "entrees" : {
+        "Wrap" : {
+            "item_ID" : 1071,
+            "price" : "5.00",
+            "type" : "Salad Station",
+            "isSwipe" : true
+        },
+        "Salad" : {
+            "item_ID" : 1072,
+            "price" : 5.00,
+            "type" : "Salad Station",
+            "isSwipe" : true
+        },
+        "Turkey Bacon Club" : {
+            "item_ID" : 1073,
+            "price" : "6.25",
+            "type" : "readytogo",
+            "isSwipe" : true
+        },
+        "Roast Beef & Bree" : {
+            "item_ID" : 1074,
+            "price" : "6.25",
+            "type" : "readytogo",
+            "isSwipe" : true
+        }, 
+        "Ham'n Swiss" : {
+            "item_ID" : 1075,
+            "price" : "6.25",
+            "type" : "readytogo",
+            "isSwipe" : true
+        }, 
+        "Egg Salad Sandwhich" : {
+            "item_ID" : 1076,
+            "price" : "5.00",
+            "type" : "readytogo",
+            "isSwipe" : true
+        },
+        "Chicken Salad Sandwhich" : {
+            "item_ID" : 1077,
+            "price" : "5.00",
+            "type" : "readytogo",
+            "isSwipe" : true
+        },
+        "Large Soup" : {
+            "item_ID" : 1078,
+            "price" : "4.75",
+            "type" : "readytogo",
+            "isSwipe" : true
+        },
+        "Hamburger" : {
+            "item_ID" : 1079,
+            "price" : "3.50",
+            "type" : "grill",
+            "isSwipe" : true
+        },
+        "Cheeseburger" : {
+            "item_ID" : 1080,
+            "price" : "4.00",
+            "type" : "grill",
+            "isSwipe" : true
+        },
+        "Chicken Sandwhich" : {
+            "item_ID" : 1081,
+            "price" : "4.00",
+            "type" : "grill",
+            "isSwipe" : true
+        }, 
+        "Grilled Cheese" : {
+            "item_ID" : 1082,
+            "price" : "4.00",
+            "type" : "grill",
+            "isSwipe" : true
+        },
+        "Veggie Burger" : {
+            "item_ID" : 1083,
+            "price" : "4.50",
+            "type" : "grill",
+            "isSwipe" : true
+        }, 
+        "Pasta" : {
+            "item_ID" : 1084,
+            "price" : "3.70",
+            "type" : "pasta/sub",
+            "isSwipe" : true
+        },
+        "Meatball Sub" : {
+            "item_ID" : 1085,
+            "price" : 5.00,
+            "type" : "pasta/sub",
+            "isSwipe" : true
+        }
+    }, 
+    "dessert" : {
+        "Orbitz Gum" : {
+            "item_ID" : 1022,
+            "price" : "1.75",
+            "type" : "grabngo",
+            "isSwipe" : false
+        },
+        "Bagged Candy" : {
+            "item_ID" : 1028,
+            "price" : "2.50",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        },
+        "Rock Candy" : {
+            "item_ID" : 1029,
+            "price" : "3.00",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        },
+        "Lollipops" : {
+            "item_ID" : 1030,
+            "price" : "2.00",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        },
+        "Soft Cookies" : {
+            "item_ID" : 1031,
+            "price" : "2.00",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        },
+        "Small bag Hard Cookies" : {
+            "item_ID" : 1032,
+            "price" : "4.00",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        }, 
+        "Large bag Mini Cookies" : {
+            "item_ID" : 1033,
+            "price" : "5.00",
+            "type" : "Little Debbie",
+            "isSwipe" : false
+        }
+    }
+}

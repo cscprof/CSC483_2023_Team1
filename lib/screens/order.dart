@@ -22,7 +22,7 @@ class OrderPage extends StatelessWidget {
     return MaterialApp(
       title: "Order Page",
       home: Scaffold(
-        appBar: TopAppBar(AppBar(), "New Order", Colors.yellow, Colors.black),
+        appBar: TopAppBar(AppBar(), "New Order"),
         body: const Column(children: [Expanded(flex: 1, child: ListViewBuilder()),],),
         bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
       )

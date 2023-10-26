@@ -1,0 +1,28 @@
+{
+    "users": {
+        "admin" : {
+            "name" : "admin",
+            "password" : "admin"
+        }, 
+        "user123" : {
+            "name" : "user123",
+            "password" : "user123"
+        },
+        "ryan" : {
+            "name" : "ryan",
+            "password" : "ryan"
+        },
+        "zoe" : {
+            "name" : "zoe",
+            "password" : "zoe"
+        },
+        "haylee" : {
+            "name" : "haylee",
+            "password" : "haylee"
+        },
+        "angela" : {
+            "name" : "angela",
+            "password" : "angela"
+        }
+    }
+}
