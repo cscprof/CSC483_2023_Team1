@@ -13,7 +13,7 @@ class NotificationsPage extends StatelessWidget {
     return MaterialApp(
       title: 'Settings',
       home: Scaffold(
-        appBar: TopAppBar(AppBar(), 'Settings', const Color(0xffCB9700),Colors.black),
+        appBar: TopAppBar(AppBar(), 'Settings'),
         backgroundColor: background,
         body: Center(
           child: Column(
