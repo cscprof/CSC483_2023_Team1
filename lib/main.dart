@@ -23,6 +23,6 @@ import 'screens/settings.dart';
 // }
 // ------------------ RUN TO SEE GENERAL PAGES ------------------ //
 void main() {
-  runApp(const LoginPage());
+  runApp(const HomePage());
 }
 

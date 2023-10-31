@@ -1,4 +1,3 @@
-import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
 import 'settings.dart'; // Import the Order.dart file
 import 'widgets/HeaderBar.dart';
@@ -14,7 +13,7 @@ class HomePage extends StatelessWidget {
       title: 'Mobile Order Page',
       home: Scaffold(
         appBar: TopAppBar(AppBar(), "Home Page"),
-        body: Stack( // Use a Stack to overlay images
+        body: Stack(
           children: [
             Container(
               decoration: const BoxDecoration(
@@ -58,44 +57,12 @@ class HomePage extends StatelessWidget {
                   const SizedBox(height: 10), // Add some spacing between the buttons
                   ElevatedButton(
                     onPressed: () {
-                      // Display a dialog with two buttons: New Order and Reorder
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Order Options'),
-                            content: const Text('Choose an option:'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  // Close the dialog
-                                  Navigator.of(context).pop();
-                              
-                                  // Add logic for creating a new order here
-                                  // Navigate to a new order screen
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const OrderPage()),
-                                  );
-                                },
-                                child: const Text('New Order'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  // Close the dialog
-                                  Navigator.of(context).pop();
-                              
-                                  // Add logic for reordering here
-                                  // For example, repeat the previous order
-                                },
-                                child: const Text('Reorder'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
+                      // Add your logic for the "Reorder" button here
                     },
-                    child: const Text('Place an Order'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black), // Set the background color to black
+                    ),
+                    child: const Text('Re Order', style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),
