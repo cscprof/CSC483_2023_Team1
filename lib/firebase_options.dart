@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '266295427213',
     projectId: 'csc483-team1',
     authDomain: 'csc483-team1.firebaseapp.com',
+    databaseURL: 'https://csc483-team1-default-rtdb.firebaseio.com',
     storageBucket: 'csc483-team1.appspot.com',
     measurementId: 'G-BRVMVE7KTC',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:266295427213:android:45bd4afac1f49104eaa2c4',
     messagingSenderId: '266295427213',
     projectId: 'csc483-team1',
+    databaseURL: 'https://csc483-team1-default-rtdb.firebaseio.com',
     storageBucket: 'csc483-team1.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:266295427213:ios:509e58618c14a9f9eaa2c4',
     messagingSenderId: '266295427213',
     projectId: 'csc483-team1',
+    databaseURL: 'https://csc483-team1-default-rtdb.firebaseio.com',
     storageBucket: 'csc483-team1.appspot.com',
     iosBundleId: 'com.example.brigProject',
   );
@@ -75,6 +78,7 @@ class DefaultFirebaseOptions {
     appId: '1:266295427213:ios:2a9dc23c819b1087eaa2c4',
     messagingSenderId: '266295427213',
     projectId: 'csc483-team1',
+    databaseURL: 'https://csc483-team1-default-rtdb.firebaseio.com',
     storageBucket: 'csc483-team1.appspot.com',
     iosBundleId: 'com.example.brigProject.RunnerTests',
   );

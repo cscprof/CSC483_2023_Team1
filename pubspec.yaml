@@ -11,7 +11,9 @@ dependencies:
   url_launcher: ^6.1.14
   flutter:
    sdk: flutter
-  firebase_database: ^10.3.2
+  firebase_database: ^10.3.3
+  firebase_storage: ^11.4.1
+  firebase_auth: ^4.13.0
 
 dev_dependencies:
   flutter_test:
