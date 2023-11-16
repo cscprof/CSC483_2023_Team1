@@ -21,7 +21,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  UserClass userInput = await userRead("zoe");
+  UserClass userInput = await userRead("haylee");
   print(userInput.name);
   print(userInput.password);
 
