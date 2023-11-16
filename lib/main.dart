@@ -8,6 +8,7 @@ import 'screens/login.dart';
 import 'screens/home.dart';
 import 'screens/order.dart';
 import 'screens/settings.dart';
+import 'screens/cart.dart';
 
 // -------------------- RUN TO WORK WITH DATABASE ----------------- //
 // Future<void> main() async {
