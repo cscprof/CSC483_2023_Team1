@@ -7,9 +7,11 @@
 
 -------------------------------------------------------------- */
 
+import 'package:brig_project/screens/cart.dart';
 import 'package:brig_project/screens/home.dart';
 import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
+import 'package:brig_project/screens/cart.dart';
 import 'package:flutter/services.dart';
 
 
@@ -42,7 +44,15 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
               MaterialPageRoute(builder: (context) => const HomePage())
             );
           } else if (value == 2) {
-            print("Cart BTN clicked!");
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => CartPage(cartItems: [
+                  CartItem(name: 'Item 1', priceInDollars: 10.0, mealSwipes: 0),
+                  CartItem(name: 'Item 2', priceInDollars: 5.0, mealSwipes: 0),
+                  CartItem(name: 'Item 3', priceInDollars: 8.0, mealSwipes: 0),
+                ],)
+              )
+            );
           } else if (value == 1) {
             Navigator.push(
               context, 

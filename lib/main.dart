@@ -10,10 +10,9 @@ import 'firebase/items.dart';
 //import 'firebase_options.dart';
 //import 'screens/login.dart';
 import 'screens/home.dart';
-//import 'screens/order.dart';
-//import 'screens/settings.dart';
-
-
+import 'screens/order.dart';
+import 'screens/settings.dart';
+import 'screens/cart.dart';
 
 // -------------------- RUN TO WORK WITH DATABASE ----------------- //
 Future<void> main() async {
@@ -22,11 +21,11 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  UserClass userInput = await userRead("joey");
+  UserClass userInput = await userRead("zoe");
   print(userInput.name);
   print(userInput.password);
 
-  ItemClass item = await itemRead("blank", "turkey_bacon_club");
+  ItemClass item = await itemRead("entree", "turkey_bacon_club");
   print(item.name);
   print(item.isSwipe);
   print(item.icon);
