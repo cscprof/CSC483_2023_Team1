@@ -9,6 +9,7 @@ import 'firebase/users.dart';
 import 'firebase/items.dart';
 //import 'firebase_options.dart';
 //import 'screens/login.dart';
+import 'screens/reorder.dart';
 import 'screens/home.dart';
 import 'screens/order.dart';
 import 'screens/settings.dart';
@@ -21,11 +22,11 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  UserClass userInput = await userRead("haylee");
+  UserClass userInput = await userRead("angela");
   print(userInput.name);
   print(userInput.password);
 
-  ItemClass item = await itemRead("entree", "turkey_bacon_club");
+  ItemClass item = await itemRead("entree", "wrap");
   print(item.name);
   print(item.isSwipe);
   print(item.icon);
