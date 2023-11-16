@@ -1,157 +1,81 @@
 import 'package:brig_project/screens/login.dart';
+import 'package:brig_project/screens/settings.dart';
 import 'package:flutter/material.dart';
-import 'widgets/HeaderBar.dart';
-//import 'widgets/BottomBar.dart';
+import 'widgets/headerSettingsN.dart';
 
-class NotificationsPage extends StatelessWidget {
-  NotificationsPage({super.key});
+import 'widgets/BottomBar.dart';
 
-  Color? background = const Color(0xffFEFFD4);
+class NotificationsPage extends StatefulWidget {
+  const NotificationsPage ({Key? key}) : super(key: key);
 
-  @override 
+  @override
+  State<NotificationsPage> createState() => _NotificationsPageState();
+}
+
+class _NotificationsPageState extends State<NotificationsPage> {
+  bool allOn = false;
+  bool progress = false;
+  bool denied = false;
+  bool closed = false;
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Settings',
-      home: Scaffold(
-        appBar: TopAppBar(AppBar(), 'Settings'),
-        backgroundColor: background,
+    return  Theme(
+      data: allOn ? ThemeData.light() : ThemeData.light(),
+      child: Scaffold(
+        appBar: SettingsAppBar2(AppBar(), 'Notification Settings'),
         body: Center(
-          child: Column(
-            verticalDirection: VerticalDirection.down,
-         
-            children: [
-                 const SizedBox(height:50),
-
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: ()   {           
-                },            
-                icon: const Icon(
-                 Icons.notifications_on,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "All Push Notifications",
-                    style: TextStyle(                
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),  
-              const Spacer(flex: 20),
-              
-                Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: ()   {           
-                },            
-                icon: const Icon(
-                  Icons.notifications_on,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "Order Submitted/In Process/Done",
-                    style: TextStyle(                
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),  
-              const Spacer(flex: 20),
-                Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: ()   {           
-                },            
-                icon: const Icon(
-                 Icons.notifications_on,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "Order Denied",
-                    style: TextStyle(                
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),  
-              const Spacer(flex: 20),
-                Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: ()   {           
-                },            
-                icon: const Icon(
-                  Icons.notifications_on,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "Brig Closed",
-                    style: TextStyle(                
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),  
-              const Spacer(flex: 20),
-                   Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: (               
-                )   {  
-                      Navigator.push(
-                   context, 
-                 MaterialPageRoute(builder: (context) => const LoginPage())
-               );
-                },            
-                icon: const Icon(
-                  Icons.notifications_on,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "Log Out",
-                    style: TextStyle(                
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),  
-            ],
-          )
-        ),
-      )
-    );
+            child: ListView(               
+                  children: [           
+                    ListTile(
+                        title: const Text( "All Push Notifications"),
+                       leading: const Icon(Icons.notification_add_outlined),
+                       trailing: Switch(
+                             value: allOn,
+                            onChanged: (value) {
+                              setState(() {
+                                allOn = value;
+                              });
+                            })),
+                      ListTile(
+                        title: const Text( "Order Submitted/In Process/Done"),
+                       leading: const Icon(Icons.notification_add_outlined),
+                       trailing: Switch(
+                             value: progress,
+                            onChanged: (value) {
+                              setState(() {
+                                progress = value;
+                              });
+                            })),
+                         ListTile(
+                        title: const Text( "Order Denied"),
+                       leading: const Icon(Icons.notification_add_outlined),
+                       trailing: Switch(
+                             value: denied,
+                            onChanged: (value) {
+                              setState(() {
+                                denied = value;
+                              });
+                            })),
+                       ListTile(
+                        title: const Text( "Brig Closed"),
+                       leading: const Icon(Icons.notification_add_outlined),
+                       trailing: Switch(
+                             value: closed,
+                            onChanged: (value) {
+                              setState(() {
+                                closed = value;
+                              });
+                            })),  
+                     
+                  ],
+                ),       
+            ),
+             bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+          ),
+        ); 
   }
 }
+
+
+
 

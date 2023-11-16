@@ -1,95 +1,91 @@
+
 import 'package:brig_project/screens/login.dart';
 import 'package:brig_project/screens/notifications.dart';
 import 'package:flutter/material.dart';
-import 'widgets/HeaderBar.dart';
-//import 'widgets/BottomBar.dart';
+import 'widgets/headerSettings.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'widgets/BottomBar.dart';
 
-class SettingsPage extends StatelessWidget {
-  SettingsPage({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage ({Key? key}) : super(key: key);
 
-  Color? background = const Color(0xffFEFFD4);
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
 
-  @override 
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Settings',
-      home: Scaffold(
-        appBar: TopAppBar(AppBar(), 'Settings'),
-        backgroundColor: background,
-        body: Center(
-          child: Column(
-            verticalDirection: VerticalDirection.down,
-            children: [
-                 const SizedBox(height:50),
-
-            Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: ()   {
-               Navigator.push(
-                   context, 
-                 MaterialPageRoute(builder: (context) => NotificationsPage())
-               );
-                print('Notifications Button Pressed');
-                  background = Colors.red[300];
-                },            
-                icon: const Icon(
-                  Icons.arrow_back_ios_rounded,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "Notification Settings",
-                    style: TextStyle(
-                  
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),  
-             const Spacer(flex: 50),
-               Directionality(
-              textDirection: TextDirection.rtl,
-              child: ElevatedButton.icon(
-              
-                style: const ButtonStyle(     
-       backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700))
-      ),
-                onPressed: ()   {
-               Navigator.push(
-                   context, 
-                 MaterialPageRoute(builder: (context) => const LoginPage())
-               );
-                 print('Logout Button Pressed');
-                  background = Colors.blue[300];
-                },            
-                icon: const Icon(
-                  Icons.arrow_back_ios_rounded,
-                 color:Color(0xff2D2D2D), 
-                ),
-                label: const Text(
-                  "Log Out",
-                    style: TextStyle(
-                  
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                    )
-                ),
-              ),
-            ),      
-           
-              const Spacer(flex: 50),
-            ],
-          )
-        ),
-      )
-    );
+launchURLApp() async {
+  var url = Uri.parse("https://www.geneva.edu/student-life/services/security/");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool night = false;
+  @override
+  Widget build(BuildContext context) {
+    return  Theme(
+      data: night ? ThemeData.dark() : ThemeData.light(),
+      child: Scaffold(
+        appBar: SettingsAppBar(AppBar(), 'Settings'),
+        body: Center(
+            child: ListView(               
+                  children: [           
+                    ListTile(
+                        title: const Text( "Dark Mode"),
+                       leading: const Icon(Icons.dark_mode_outlined),
+                       trailing: Switch(
+                        
+                             value: night,
+                            onChanged: (value) {
+                              setState(() {
+                                night = value;
+                              });
+                            })),
+                      ListTile(
+                        title: const Text("Notifications"),
+                        leading: const Icon( Icons.notifications_active),
+                            onTap:() {
+                                 Navigator.push(
+                                  context, 
+                                 MaterialPageRoute(builder: (context) => NotificationsPage())
+                                 );
+                              }
+                            ),
+                       ListTile(
+                        title: const Text("Help"),
+                        leading: const Icon( Icons.question_mark_outlined),
+                            onTap:() {
+                                
+                                    launchURLApp();
+                                 
+                              }
+                            ),
+                    
+                     ListTile(
+                        title: const Text("Log Out"),
+                        leading: const Icon( Icons.logout_outlined),
+                            onTap:() {
+                                 Navigator.push(
+                                  context, 
+                                 MaterialPageRoute(builder: (context) => const LoginPage())
+                                 );
+                              }
+                            ),
+            
+                
+                  ],
+                ),    
+                   
+            ),
+             bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+          ),
+        ); 
+  }
+}
+
+
+
 
