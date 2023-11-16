@@ -37,6 +37,12 @@ String calculateEstimatedTime() {
     return estimatedTime.toString();
   }
 
+// Function to remove an item from the cart
+  void removeItem(int index) {
+    setState(() {
+      widget.cartItems.removeAt(index);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     double total = 0;
@@ -69,23 +75,33 @@ widget.cartItems.forEach((item) {
                       border: Border.all(
                         width: 2,
                         color: const Color(0xff2D2D2D),
-                      
                       ),
-                      //borderRadius: const BorderRadius.all(Radius.circular(8)), // Optional: Rounded corners
                     ),
                     child: ListTile(
                       title: Text(item.name),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //Text('Quantity: ${item.quantity}'),
-                          //Text('Price in Dollars & Flex: \$${item.priceInDollars.toStringAsFixed(2)}'),
-                          //Text('Price in Flex: ${item.priceInDollars.toStringAsFixed(2)} Flex'),
                           Text('Meal Swipes: ${item.mealSwipes}'),
                         ],
                       ),
-                      trailing: Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
-                                
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
+                          const SizedBox(width: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Call the removeItem function when the button is pressed
+                              removeItem(index);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red, // Set the background color to red
+                            ),
+                            child: const Text('Remove'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -93,6 +109,7 @@ widget.cartItems.forEach((item) {
             },
           ),
         ),
+
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
