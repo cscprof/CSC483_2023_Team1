@@ -5,6 +5,7 @@ import 'widgets/HeaderBar.dart';
 import 'home.dart';
 import 'package:brig_project/themes/theme_data.dart';
 import '../data/reorderdata.dart';
+import 'cart.dart';
 
 ReorderData item = ReorderData();
 
@@ -32,12 +33,11 @@ class ReorderScreen extends StatelessWidget {
         bottomNavigationBar: ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            // add home and cart label
             // IconButton(icon: const Icon(Icons.home), tooltip: 'Home', onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));},),
             // IconButton(icon: const Icon(Icons.shopping_cart), tooltip: 'Cart', onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ReorderPage()));},), 
-            // change background color
-            TextButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));}, icon: const Icon(Icons.home, color: Colors.black,), label: const Text('Home', style: TextStyle(color: Colors.black),)),
-            TextButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));}, icon: const Icon(Icons.shopping_cart, color: Colors.black,), label: const Text('Cart', style: TextStyle(color: Colors.black),)), // change to cart
+            // check background color
+            TextButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));}, icon: const Icon(Icons.home, color: Colors.black,), label: const Text('Home', style: TextStyle(color: Colors.black),), style: TextButton.styleFrom(foregroundColor: Colors.grey[400],)),
+            TextButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)));}, icon: const Icon(Icons.shopping_cart, color: Colors.black,), label: const Text('Cart', style: TextStyle(color: Colors.black),), style: TextButton.styleFrom(foregroundColor: Colors.grey[400],)),
           ],
         ),
       ),
