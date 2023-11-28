@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'settings.dart'; // Import the Order.dart file
 import 'widgets/HeaderBar.dart';
 import 'widgets/BottomBar.dart';
+import 'order.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -47,7 +48,10 @@ class HomePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Add your logic for the "New Order" button here
+                      Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context) => const OrderPage())
+                     );// Add your logic for the "New Order" button here
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.black), // Set the background color to black
