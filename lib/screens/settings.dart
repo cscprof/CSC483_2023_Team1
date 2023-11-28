@@ -1,6 +1,7 @@
 
 import 'package:brig_project/screens/login.dart';
 import 'package:brig_project/screens/notifications.dart';
+import 'package:brig_project/screens/notificationspage.dart';
 import 'package:flutter/material.dart';
 import 'widgets/headerSettings.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,8 +45,18 @@ class _SettingsPageState extends State<SettingsPage> {
                                 night = value;
                               });
                             })),
-                      ListTile(
+                             ListTile(
                         title: const Text("Notifications"),
+                        leading: const Icon( Icons.notification_add_sharp),
+                            onTap:() {
+                                 Navigator.push(
+                                  context, 
+                                 MaterialPageRoute(builder: (context) => NotifPage())
+                                 );
+                              }
+                            ),
+                      ListTile(
+                        title: const Text("Notification Settings"),
                         leading: const Icon( Icons.notifications_active),
                             onTap:() {
                                  Navigator.push(

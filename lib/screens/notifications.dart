@@ -2,7 +2,6 @@ import 'package:brig_project/screens/login.dart';
 import 'package:brig_project/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'widgets/headerSettingsN.dart';
-
 import 'widgets/BottomBar.dart';
 
 class NotificationsPage extends StatefulWidget {
