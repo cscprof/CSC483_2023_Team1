@@ -3,6 +3,7 @@ import 'settings.dart'; // Import the Order.dart file
 import 'widgets/HeaderBar.dart';
 import 'widgets/BottomBar.dart';
 import 'order.dart';
+import 'reorder.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -49,9 +50,9 @@ class HomePage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => const OrderPage())
-                     );// Add your logic for the "New Order" button here
+                        context, 
+                        MaterialPageRoute(builder: (context) => const OrderPage())
+                     );
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.black), // Set the background color to black
@@ -61,7 +62,10 @@ class HomePage extends StatelessWidget {
                   const SizedBox(height: 10), // Add some spacing between the buttons
                   ElevatedButton(
                     onPressed: () {
-                      // Add your logic for the "Reorder" button here
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => const ReorderPage())
+                     );
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.black), // Set the background color to black
