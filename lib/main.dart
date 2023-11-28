@@ -22,15 +22,21 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  UserClass userInput = await userRead("angela");
-  print(userInput.name);
-  print(userInput.password);
+  // UserClass userInput = await userRead("angela");
+  // print(userInput.name);
+  // print(userInput.password);
 
-  ItemClass item = await itemRead("entree", "wrap");
-  print(item.name);
-  print(item.isSwipe);
-  print(item.icon);
-  print(item.price);
+  // ItemClass item = await itemRead("entree", "wrap");
+  // print(item.name);
+  // print(item.isSwipe);
+  // print(item.icon);
+  // print(item.price);
+
+  // List pastOrders = await getPastOrders("ryan");
+  // for(int i = 0; i < pastOrders.length; i++){
+  //   ItemClass pastItem = pastOrders[i];
+  //   print(pastItem.name);
+  // }
   
   runApp(const HomePage()); // insert class name
 }
