@@ -18,6 +18,7 @@ import 'screens/cart.dart';
 // -------------------- RUN TO WORK WITH DATABASE ----------------- //
 Future<void> main() async {
 
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
@@ -38,8 +39,10 @@ Future<void> main() async {
   //   print(pastItem.name);
   // }
   
-  runApp(const HomePage()); // insert class name
-}
+  // angela -- took this out
+  //runApp(const HomePage()); // insert class name
+  runApp(const MaterialApp(home: HomePage(),));
+} 
 // ------------------ RUN TO SEE GENERAL PAGES ------------------ //
 // void main() {
 //   runApp(const HomePage());
