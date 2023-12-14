@@ -1,8 +1,10 @@
+//import 'dart:js';
 import 'package:brig_project/screens/home.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 //import 'widgets/headerBar.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+//import '../firebase/users.dart';
 
 launchURLApp() async {
   var url = Uri.parse("https://www.geneva.edu/student-life/services/security/");
@@ -13,9 +15,62 @@ launchURLApp() async {
   }
 }
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
 
+class UserClass  {
+  String name;
+  String password;
+
+  UserClass(this.name, this.password);
+}
+
+UserClass userErr = UserClass('err', 'err');
+
+// Read name from user JSON 
+Future<UserClass> userRead(String user) async {
+  
+  DatabaseReference userRef = FirebaseDatabase.instance.ref();
+  final event = await userRef.child("users/$user").get();  
+  
+  if(!event.exists) {
+    return userErr;
+  }
+
+  String name = event.child("name").value.toString(); // disgusting
+  String password = event.child("password").value.toString();
+  
+  UserClass snapshot = UserClass(name, password);
+  
+  return snapshot;
+
+}
+
+Future<bool> isLoginCorrect(String username, String password) async {
+
+  DatabaseReference userRef = FirebaseDatabase.instance.ref();
+  final event = await userRef.child("users/$username").get();  
+  
+  if(!event.exists) { // if username doesnt exist
+    return false;
+  }
+
+  if (password != event.child("password").value.toString()) { // if password doesnt match
+    return false;
+  }
+
+  return true;
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage ({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+  TextEditingController userController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+class _LoginPageState extends State<LoginPage> {
+  bool night = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp( 
@@ -61,25 +116,27 @@ class LoginPage extends StatelessWidget {
             ),
             ),
              const SizedBox(height:20),
-             const SizedBox(
-              
+             SizedBox(
               width: 250,
-             child: TextField(
+             child: TextFormField(         
+             controller: userController,     
              obscureText: true,
-             decoration: InputDecoration(
+             decoration: const InputDecoration(
              border: OutlineInputBorder(),
              labelText: 'Student ID:',
                   ),
                  ),     
                ),
-                 const SizedBox(height:20),
-                const SizedBox(
+             const SizedBox(height:20),
+                SizedBox(
               width: 250,
-             child: TextField(
+             child: TextFormField(           
+             controller: passwordController,
              obscureText: true,
-             decoration: InputDecoration(
+             decoration: const InputDecoration(
              border: OutlineInputBorder(),
              labelText: 'PIN:',
+             
                   ),
                  ),
                ),
@@ -89,13 +146,15 @@ class LoginPage extends StatelessWidget {
                backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700)),
                 ),
                 child: const Text('Sign In'),
-               onPressed: ()
-                {
-               Navigator.push(
-                   context, 
-                 MaterialPageRoute(builder: (context) => const HomePage())
-               );
-                },
+               onPressed: () {
+                 if ( userController.text == "username" && passwordController.text == "password")            
+  {// just for now, we have more usernames and passwords in th firebase
+      Navigator.push(
+          context, 
+     MaterialPageRoute(builder: (context) => const HomePage())
+                     );
+  }
+               }
               ),    
             const SizedBox(height:50),
              
@@ -123,15 +182,11 @@ class LoginPage extends StatelessWidget {
 
   }
 
-  // look at current time, output value
 
-  DateTime currentTime() {
-    return DateTime.now();
-  }
 
-}
 
       
 
 
     
+}

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 /* ------------------------------------------------------------
   10-12/23
   This code NEEDS to be refactored. Set up for just the home page 
@@ -11,8 +13,8 @@ import 'package:brig_project/screens/cart.dart';
 import 'package:brig_project/screens/home.dart';
 import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
-import 'package:brig_project/screens/cart.dart';
-import 'package:flutter/services.dart';
+//import 'package:brig_project/screens/cart.dart';
+//import 'package:flutter/services.dart';
 
 
 enum WhichPage { home, checkout, order, subCat, menu }
