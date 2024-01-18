@@ -43,17 +43,29 @@ ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err');
 
 // TODO : needs to find the item no matter if its in entrees or sides etc.
 
-Future<ItemClass> itemRead(String catagory, String item) async {
+Future<ItemClass> itemRead(String item) async {
 
   // need to search database for which locaiton item is in 
   // temporary fix is for the item to have to have the caterogory TODO: make better
 
+  List categories = ["drink", "entree", "fruit", "side", "dessert"];
   DatabaseReference itemRef = FirebaseDatabase.instance.ref(); // TODO
-  final event = await itemRef.child("items/$catagory/$item").get();
+  var event; 
+  int i = 0;
 
-  if (!event.exists) {
-    return errorItem;
-  }
+  do {
+    String category = categories[i];
+    event = await itemRef.child("items/$category/$item").get();
+    i++;
+    if (i > 4) {
+      return errorItem;
+    }
+  } while (event == null); // keep looping until 
+
+
+  // if (!event.exists) {
+  //   return errorItem;
+  // }
   String name = event.child("name").value.toString();
   String price = event.child("price").value.toString();
   String isSwipe = event.child("isSwipe").value.toString();
