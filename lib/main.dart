@@ -1,19 +1,19 @@
-import 'dart:convert';
+//import 'dart:convert';
 
 import 'package:brig_project/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_database/firebase_database.dart'; 
-import 'firebase/users.dart';
-import 'firebase/items.dart';
+//import 'firebase/users.dart';
+//import 'firebase/items.dart';
 //import 'firebase_options.dart';
 //import 'screens/login.dart';
-import 'screens/reorder.dart';
+//import 'screens/reorder.dart';
 import 'screens/home.dart';
-import 'screens/order.dart';
-import 'screens/settings.dart';
-import 'screens/cart.dart';
+//import 'screens/order.dart';
+//import 'screens/settings.dart';
+//import 'screens/cart.dart';
 
 // -------------------- RUN TO WORK WITH DATABASE ----------------- //
 Future<void> main() async {
