@@ -80,30 +80,11 @@ Future<List> getPastOrders(String name) async {
   // get item features from items selected
   List list = [];
   for (int i = 0; i < 5; i++) {
-    ItemClass itemDrink = await itemRead("drink", items[i]);
-    ItemClass itemEntree = await itemRead("entree", items[i]);
-    ItemClass itemFruit = await itemRead("fruit", items[i]);
-    ItemClass itemSide = await itemRead("side", items[i]);
-    ItemClass itemDessert = await itemRead("dessert", items[i]);
+    ItemClass item = await itemRead(items[i]);
 
-    // NASTY !! TODO : Get the stupid searchign algorithm working
-
-    if (itemDrink.name != "err") { // while there is no error
-      list.add(itemDrink);
+    if (item.name != "err") { // if there is no error
+      list.add(item);
     }
-    if (itemEntree.name != "err") { // while there is no error
-      list.add(itemEntree);
-    }
-    if (itemFruit.name != "err") { // while there is no error
-      list.add(itemFruit);
-    }
-    if (itemSide.name != "err") { // while there is no error
-      list.add(itemSide);
-    }
-    if (itemDessert.name != "err") { // while there is no error
-      list.add(itemDessert);
-    }
-    
   }
 
   return list;
