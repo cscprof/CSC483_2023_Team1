@@ -23,21 +23,24 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  // UserClass userInput = await userRead("angela");
-  // print(userInput.name);
-  // print(userInput.password);
+  // test userInput function
+  UserClass userInput = await userRead("angela");
+  print(userInput.name);
+  print(userInput.password);
 
-  // ItemClass item = await itemRead("entree", "wrap");
-  // print(item.name);
-  // print(item.isSwipe);
-  // print(item.icon);
-  // print(item.price);
+  // test itemRead function
+  ItemClass muffins = await itemRead("muffins"); // !!
+  print(muffins.name);
+  print(muffins.isSwipe);
+  print(muffins.icon);
+  print(muffins.price);
 
-  // List pastOrders = await getPastOrders("ryan");
-  // for(int i = 0; i < pastOrders.length; i++){
-  //   ItemClass pastItem = pastOrders[i];
-  //   print(pastItem.name);
-  // }
+  // test categoryRead function
+  List sides = await categoryRead("side");
+  sides.forEach( (item) {
+     ItemClass currentItem = item;
+     print(currentItem.name);
+  });
   
   // angela -- took this out
   //runApp(const HomePage()); // insert class name

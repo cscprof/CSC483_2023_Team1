@@ -27,12 +27,12 @@ class ItemClass {
   }
 
   String getDescript () {
-    // will get the description text and assign if text is located locally
+    // TODO will get the description text and assign if text is located locally
     return "temp descript";
   }
   // get icon
   String getIcon () {
-    // will get the icon that is stored on app
+    // TODO will get the icon that is stored on app
     return "temp icon";
   }
 
@@ -41,19 +41,21 @@ class ItemClass {
 // error item object
 ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err');
 
-// TODO : needs to find the item no matter if its in entrees or sides etc.
+Future<ItemClass> itemRead(String item) async {
+  List categories = ["drink", "entree", "fruit", "side", "dessert"];
+  DatabaseReference itemRef = FirebaseDatabase.instance.ref();
+  DataSnapshot event; 
+  int i = 0;
 
-Future<ItemClass> itemRead(String catagory, String item) async {
+  do { 
+    String category = categories[i];
+    event = await itemRef.child("items/$category/$item").get();
+    i++;
+    if (i > 5) {
+      return errorItem;
+    }
+  } while (!event.exists); // change this??
 
-  // need to search database for which locaiton item is in 
-  // temporary fix is for the item to have to have the caterogory TODO: make better
-
-  DatabaseReference itemRef = FirebaseDatabase.instance.ref(); // TODO
-  final event = await itemRef.child("items/$catagory/$item").get();
-
-  if (!event.exists) {
-    return errorItem;
-  }
   String name = event.child("name").value.toString();
   String price = event.child("price").value.toString();
   String isSwipe = event.child("isSwipe").value.toString();
@@ -63,6 +65,28 @@ Future<ItemClass> itemRead(String catagory, String item) async {
   ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
 
   return snapshot;
-
 }
 
+Future<List> categoryRead(String category) async {
+  /*
+    TODO
+      error handle when a bad category is inputted
+  */
+  List<ItemClass> items = [];
+  DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
+
+  await categoryRef.get().then((snapshot) {
+    for (final item in snapshot.children) {
+      String name = item.child("name").value.toString();
+      String price = item.child("price").value.toString();
+      String isSwipe = item.child("isSwipe").value.toString();
+      String descript = item.child("description").value.toString();
+      String icon = item.child("icon").value.toString();
+
+      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
+      items.add(snapshot);  
+    }
+  });
+
+  return items;
+}
