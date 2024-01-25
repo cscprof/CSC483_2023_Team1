@@ -1,8 +1,8 @@
+import 'package:brig_project/screens/subcat1.dart';
 import 'package:flutter/material.dart';
 import 'widgets/HeaderBar.dart';
 import 'widgets/BottomBar.dart';
 import '../data/itemdata.dart';
-// import 'home.dart';
 
 ItemData item = ItemData();
 
@@ -40,8 +40,15 @@ class ListViewBuilder extends StatelessWidget {
             leading: ClipRRect(borderRadius: BorderRadius.circular(35), 
               child: Image.asset(item['image'], width: 50, height: 50),),
             contentPadding: const EdgeInsets.all(20.0),
-            onTap: () {
-              debugPrint("Button pressed!");
+            onTap: () async {
+              // Get the selected item's information from the database
+              final thisSelectedCategory = item['selectedCategory'];
+
+              // Navigate to the SubCat1Page and pass the selected item's information
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SubCat1Page(selectedCategory: thisSelectedCategory),
+              ));
             },
             shape: const Border(
               bottom: BorderSide(width: 1, color: Color(0xff2D2D2D)),

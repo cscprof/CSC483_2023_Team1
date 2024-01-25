@@ -67,7 +67,7 @@ Future<ItemClass> itemRead(String item) async {
   return snapshot;
 }
 
-Future<List> categoryRead(String category) async {
+/* Future<List> categoryRead(String category) async {
   /*
     TODO
       error handle when a bad category is inputted
@@ -85,6 +85,25 @@ Future<List> categoryRead(String category) async {
 
       ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
       items.add(snapshot);  
+    }
+  });
+
+  return items;
+} */
+Future<List<ItemClass>> categoryRead(String category) async {
+  List<ItemClass> items = [];
+  DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
+
+  await categoryRef.get().then((snapshot) {
+    for (final item in snapshot.children) {
+      String name = item.child("name").value.toString();
+      String price = item.child("price").value.toString();
+      String isSwipe = item.child("isSwipe").value.toString();
+      String descript = item.child("description").value.toString();
+      String icon = item.child("icon").value.toString();
+
+      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
+      items.add(snapshot);
     }
   });
 
