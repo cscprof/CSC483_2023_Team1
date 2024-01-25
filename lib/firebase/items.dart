@@ -1,11 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
 
-
-/*  Will get items in different manors and output to program
-    Uses DATABASE for the JSON information of items & STORAGE
-    for the static information and things that are not JSONable
-*/ 
-
 class ItemClass {
   String? name; // why do I have to question these?
   double? price; // convert to int
@@ -41,6 +35,17 @@ class ItemClass {
 // error item object
 ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err');
 
+/*
+  itemRead Description:
+    
+    PURPOSE: retrieve an individual item desired
+
+    INPUT: item name
+
+    OUTPUT: ItemClass
+    
+*/
+
 Future<ItemClass> itemRead(String item) async {
   List categories = ["drink", "entree", "fruit", "side", "dessert"];
   DatabaseReference itemRef = FirebaseDatabase.instance.ref();
@@ -52,6 +57,7 @@ Future<ItemClass> itemRead(String item) async {
     event = await itemRef.child("items/$category/$item").get();
     i++;
     if (i > 5) {
+      // if item does not exist
       return errorItem;
     }
   } while (!event.exists); // change this??
@@ -67,6 +73,17 @@ Future<ItemClass> itemRead(String item) async {
   return snapshot;
 }
 
+
+/*
+  categoryRead Description:
+    
+    PURPOSE: return all of the items found in a specific categoy
+
+    INPUT: cateogry name
+
+    OUTPUT: List - ItemObjects
+    
+*/
 Future<List> categoryRead(String category) async {
   /*
     TODO

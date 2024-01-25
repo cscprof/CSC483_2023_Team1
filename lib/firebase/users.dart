@@ -1,10 +1,4 @@
-import 'dart:convert';
-import 'dart:js_interop';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
-import 'items.dart';
 
 class UserClass  {
   String name;
@@ -15,7 +9,16 @@ class UserClass  {
 
 UserClass userErr = UserClass('err', 'err');
 
-// Read name from user JSON 
+/*
+  userRead Description:
+    
+    PURPOSE: return a specific user in the form of a UserClass
+
+    INPUT: user name
+
+    OUTPUT: UserClass
+    
+*/
 Future<UserClass> userRead(String user) async {
   
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
@@ -33,6 +36,16 @@ Future<UserClass> userRead(String user) async {
   return snapshot;
 
 }
+/*
+  isLoginCorrect Description:
+    
+    PURPOSE: return if the login infomration given exist within database
+
+    INPUT: username, password
+
+    OUTPUT: bool - true if login infomration matches 
+    
+*/
 
 Future<bool> isLoginCorrect(String username, String password) async {
 
@@ -50,43 +63,49 @@ Future<bool> isLoginCorrect(String username, String password) async {
   return true;
 }
 
-// list of UserClass Objects??
-// map of objects?? 
+/*
+  getFlexRemaining Description:
+    
+    PURPOSE: retrieve the "flex" of the user
 
-// might need to return map that divides every item into its order numbers
+    INPUT: user name
 
-Future<List> getPastOrders(String name) async {
-  // able to get item from user past order
+    OUTPUT: double - number of "flex"
+    
+*/
+Future<double> getFlexRemaining(String user) async {
+  
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
-  final order = await userRef.child("users/$name/pastOrders").get();  
+  final event = await userRef.child("users/$user").get();
+  String output = event.child("flex").value.toString();
+  double flex = double.parse(output);
+  
+  return flex;
+}
+/*
+  getSwipesRemaining Description:
+    
+    PURPOSE: retrieve the "swipes" of the user
 
-  // get all orders
-  List orders = [];
-  for(int i = 1; i < 2; i++) { // Ryan - 1002 , 1003
-    orders.add(order.child("order$i").value.toString());
-  }
+    INPUT: user name
 
-  //get items from each order
-  List items = [];
-  for (int i = 0; i < orders.length; i++) {
-    String order = orders[i];
-    print(order);
-    var orderNum = await userRef.child("saveOrders/$order").get();
-    for (int j = 1; j < 5; j++) { // Ryan - powerade, fountain_drink, wrap, cup_yogurt
-      items.add(orderNum.child("item$j").value.toString());
-    }
-  }
+    OUTPUT: double - number of "swipes"
+    
+*/
+Future<double> getSwipesRemaining(String user) async {
 
-  // get item features from items selected
-  List list = [];
-  for (int i = 0; i < 5; i++) {
-    ItemClass item = await itemRead(items[i]);
+  DatabaseReference userRef = FirebaseDatabase.instance.ref();
+  final event = await userRef.child("users/$user").get();
+  String output = event.child("swipes").value.toString();
+  double swipes = double.parse(output);
+  
+  return swipes;
+}
 
-    if (item.name != "err") { // if there is no error
-      list.add(item);
-    }
-  }
+void updateSwipes(String user, double swipes) {
+  // update swipes of user to new value
+}
 
-  return list;
-
+void updateFlex(String user, double flex) {
+  // update flex of user to new value
 }

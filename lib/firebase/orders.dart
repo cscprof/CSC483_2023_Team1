@@ -50,8 +50,7 @@ Future<List> getPastOrders(String name) async {
     var orderNum = await userRef.child("saveOrders/$orderID").get();
     int j = 1;
     do {
-      ItemClass item = await itemRead(orderNum.child("item$j").value.toString());
-      print(item.name);
+      ItemClass item = await itemRead(orderNum.child("item$j").value.toString());;
       usersOrder.items.add(item);
       j++;
     } while (orderNum.child("item$j").value != null);
