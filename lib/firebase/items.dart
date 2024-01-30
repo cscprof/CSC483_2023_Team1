@@ -1,11 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 
 class ItemClass {
   String? name; // why do I have to question these?
   double? price; // convert to int
   bool? isSwipe; // convert to bool
   String? descript;
-  String? icon;
+  Image? icon; // change to different object
 
   bool isErr = false; // error bit if returned false value
 
@@ -17,13 +18,14 @@ class ItemClass {
     price = double.parse(p);
     isSwipe = s.toLowerCase() == 'true';
     descript = d;
-    icon = i;
+    icon = Image.network(i);
   }
 
-  String getDescript () {
-    // TODO will get the description text and assign if text is located locally
-    return "temp descript";
-  }
+
+  /* 
+    TODO 
+      Create a funcion that return an images object form the web link
+  */
   // get icon
   String getIcon () {
     // TODO will get the icon that is stored on app
