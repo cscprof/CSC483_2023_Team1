@@ -24,25 +24,22 @@ class Subcat1ListView extends StatelessWidget {
         } else {
           // Display the list of items
           List<ItemClass> items = snapshot.data!;
-          return Scaffold(
-            // appBar: AppBar(
-            //   title: Text(selectedCategory),
-            // ),
-            body: ListView.builder(
+          return ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
                 // NEEDS THE FOLLOWING CHANGES
                 // trailing section: isSwipe indicator, add and/or customize button
-                // leading section (when images are ready)
-                // back button! for the entire page
                 // fix layout
                 return ListTile(
+                  // tileColor: Colors.white,
                   tileColor: const Color(0xfffeffe8),
-                  title: Text(items[index].name ?? '', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)), textAlign: TextAlign.center,),
-                  subtitle: Text(items[index].price?.toString() ?? ''),
-                  // leading: ClipRRect(borderRadius: BorderRadius.circular(35),
-                  //   child: Image.asset(items[index].icon ?? '', width: 50, height: 50),
-                  // ),
+                  title: Text(items[index].name ?? '', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),),
+                  subtitle: Text('\$${items[index].price?.toString() ?? ''}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),
+                  leading: SizedBox( width: 100, height: 100,
+                    child: ClipRRect(borderRadius: BorderRadius.circular(35), //child: Image.asset(items[index].icon ?? '', width: 50, height: 50),
+                      child: Image.network(items[index].icon ?? ''),
+                  ),
+                  ),
                   // trailing: ,
                   contentPadding: const EdgeInsets.all(20.0),
                   onTap: () {
@@ -53,7 +50,6 @@ class Subcat1ListView extends StatelessWidget {
                   ),
                 );
               },
-            ),
           );
         }
       },
