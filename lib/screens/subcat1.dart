@@ -27,7 +27,7 @@ class SubCat1Page extends StatelessWidget {
               // Navigate back to the main subcategory selection
               Navigator.pop(context);
             },
-          ),
+            ),
         ),
         body: Column(
           children: [

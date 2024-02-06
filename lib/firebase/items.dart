@@ -9,7 +9,7 @@ import 'package:firebase_database/firebase_database.dart';
 class ItemClass {
   String? name; // why do I have to question these?
   double? price; // convert to int
-  bool? isSwipe; // convert to bool
+  bool isSwipe = false; // convert to bool
   String? descript;
   String? icon;
 
