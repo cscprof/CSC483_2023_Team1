@@ -25,7 +25,7 @@ class ItemData {
 
     menuItems.add({
       'title': 'Dessert',
-      'image': 'assets/images/granola.png',
+      'image': 'assets/images/dessert.png',
       'selectedCategory': 'dessert',
     });
 
