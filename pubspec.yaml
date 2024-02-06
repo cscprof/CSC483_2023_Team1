@@ -23,4 +23,14 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets: 
-  - assets/images/backgroundColor.png
+    - assets/images/backgroundColor.png
+    - assets/images/tornadoTransparent.png
+    - assets/images/gold_tornado.png
+    - assets/images/apple.png
+    - assets/images/burger.png
+    - assets/images/drinks.png
+    - assets/images/fries.png
+    - assets/images/geneva_logo.png
+    - assets/images/granola.png
+    - assets/images/wordBrig.png
+    - assets/images/wrap.png

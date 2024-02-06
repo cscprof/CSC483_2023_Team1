@@ -27,9 +27,9 @@ class ReorderScreen extends StatelessWidget {
     return MaterialApp(
       title: "Reorder Page",
       home: Scaffold(
-        appBar: TopAppBar(AppBar(), "Reorder"),
+        appBar: TopAppBar(AppBar(backgroundColor: const Color(0xFFBDBDBD),), "Reorder"),
         body: const ReorderTabBar(),
-        backgroundColor: const Color(0xffFEFFD8),
+        backgroundColor: const Color(0xFFBDBDBD),
         bottomNavigationBar: ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[

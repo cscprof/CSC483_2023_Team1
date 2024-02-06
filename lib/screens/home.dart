@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'settings.dart'; // Import the Order.dart file
+//import 'settings.dart'; // Import the Order.dart file
 import 'widgets/HeaderBar.dart';
 import 'widgets/BottomBar.dart';
 import 'order.dart';
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/backgroundColor.png"),
+                  image: AssetImage("assets/images/backgroundColor.png"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               top: 20,
               left: MediaQuery.of(context).size.width / 3,
               child: Image.asset(
-                "images/tornadoTransparent.png",
+                "assets/images/tornadoTransparent.png",
                 width: 400,
                 height: 700,
               ),
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               top: 200,
               left: MediaQuery.of(context).size.width / 5,
               child: Image.asset(
-                "images/wordBrig.png",
+                "assets/images/wordBrig.png",
                 width: 700,
                 height: 500,
               ),

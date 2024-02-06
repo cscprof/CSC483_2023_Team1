@@ -2,10 +2,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class ItemClass {
-  String? name; // why do I have to question these?
-  double? price; // convert to int
-  bool? isSwipe; // convert to bool
-  String? descript;
+  String name = "temp_name"; // why do I have to question these?
+  double price = 0.0; // convert to int
+  bool isSwipe = false; // convert to bool
+  String descript = "temp_desc";
   Image? icon; // change to different object
 
   bool isErr = false; // error bit if returned false value
@@ -86,7 +86,7 @@ Future<ItemClass> itemRead(String item) async {
     OUTPUT: List - ItemObjects
     
 */
-Future<List> categoryRead(String category) async {
+Future<List<ItemClass>> categoryRead(String category) async {
   /*
     TODO
       error handle when a bad category is inputted
@@ -103,7 +103,7 @@ Future<List> categoryRead(String category) async {
       String icon = item.child("icon").value.toString();
 
       ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
-      items.add(snapshot);  
+      items.add(snapshot);
     }
   });
 
