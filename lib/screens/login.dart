@@ -1,10 +1,12 @@
 //import 'dart:js';
 import 'package:brig_project/screens/home.dart';
-import 'package:firebase_database/firebase_database.dart';
+//import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 //import 'widgets/headerBar.dart';
 import 'package:url_launcher/url_launcher.dart';
-//import '../firebase/users.dart';
+import '../firebase/users.dart';
+
+
 
 launchURLApp() async {
   var url = Uri.parse("https://www.geneva.edu/student-life/services/security/");
@@ -13,51 +15,6 @@ launchURLApp() async {
   } else {
     throw 'Could not launch $url';
   }
-}
-
-
-class UserClass  {
-  String name;
-  String password;
-
-  UserClass(this.name, this.password);
-}
-
-UserClass userErr = UserClass('err', 'err');
-
-// Read name from user JSON 
-Future<UserClass> userRead(String user) async {
-  
-  DatabaseReference userRef = FirebaseDatabase.instance.ref();
-  final event = await userRef.child("users/$user").get();  
-  
-  if(!event.exists) {
-    return userErr;
-  }
-
-  String name = event.child("name").value.toString(); // disgusting
-  String password = event.child("password").value.toString();
-  
-  UserClass snapshot = UserClass(name, password);
-  
-  return snapshot;
-
-}
-
-Future<bool> isLoginCorrect(String username, String password) async {
-
-  DatabaseReference userRef = FirebaseDatabase.instance.ref();
-  final event = await userRef.child("users/$username").get();  
-  
-  if(!event.exists) { // if username doesnt exist
-    return false;
-  }
-
-  if (password != event.child("password").value.toString()) { // if password doesnt match
-    return false;
-  }
-
-  return true;
 }
 
 class LoginPage extends StatefulWidget {
@@ -107,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
            
-           const Text(
+           const Text( 
            'Sign In With Geneva Student ID:',
              style: TextStyle(
               fontSize: 40,
@@ -146,14 +103,16 @@ class _LoginPageState extends State<LoginPage> {
                backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700)),
                 ),
                 child: const Text('Sign In'),
-               onPressed: () {
-                 if ( userController.text == "username" && passwordController.text == "password")            
-  {// just for now, we have more usernames and passwords in th firebase
-      Navigator.push(
-          context, 
-     MaterialPageRoute(builder: (context) => const HomePage())
-                     );
-  }
+               onPressed: () async {
+                  // user: haylee, password: phaylee 
+                 if (await isLoginCorrect(userController.text, passwordController.text))            
+                 {  
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                    context, 
+                   MaterialPageRoute(builder: (context) => const HomePage())
+                           );
+                  }
                }
               ),    
             const SizedBox(height:50),
