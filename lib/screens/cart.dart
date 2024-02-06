@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'settings.dart'; // Import the Order.dart file
+import 'package:brig_project/screens/payment.dart';
 import 'widgets/HeaderBar.dart';
 import 'widgets/BottomBar.dart';
 import 'dart:math';
@@ -158,7 +158,14 @@ widget.cartItems.forEach((item) {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: ElevatedButton(
-            onPressed: () {
+            onPressed: () { {                       
+  {
+      Navigator.push(
+          context, 
+     MaterialPageRoute(builder: (context) => const PaymentPage())
+                     );
+  }
+               }
       // Implement the functionality to proceed to checkout
       // You can navigate to a checkout page or perform any other action
       // based on the items in the cart.
@@ -169,11 +176,12 @@ widget.cartItems.forEach((item) {
             backgroundColor: Colors.black, // Set the background color to black
           ),
             child: const Text('Proceed to Checkout',
-            style: TextStyle(color: Colors.white), // Set the text color to white
+            style: TextStyle(color: Colors.white),
+             
+            // Set the text color to white
             ),
           ),
         ),
-
       ],
     ),
     bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
