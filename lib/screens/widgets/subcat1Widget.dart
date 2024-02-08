@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import '../../firebase/items.dart';
 
@@ -33,13 +34,13 @@ class Subcat1ListView extends StatelessWidget {
                 return ListTile(
                   // tileColor: Colors.white,
                   tileColor: const Color(0xfffeffe8),
-                  title: Text(items[index].name ?? '', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),),
+                  title: Text(items[index].name, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),),
                   subtitle: Row(
                     children: [
-                      Text('\$${items[index].price?.toString() ?? ''}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),
+                      Text('\$${items[index].price.toString()}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),
                       Icon(isSwipeIcon(items[index].isSwipe),
                         size: 17,
-                        color: Color.fromARGB(255, 11, 85, 196)
+                        color: const Color.fromARGB(255, 11, 85, 196)
                       ),
                     ],
                   ), //Text('\$${items[index].price?.toString() ?? ''}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),

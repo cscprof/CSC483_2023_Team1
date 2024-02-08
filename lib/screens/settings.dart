@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             onTap:() {
                                  Navigator.push(
                                   context, 
-                                 MaterialPageRoute(builder: (context) => NotifPage())
+                                 MaterialPageRoute(builder: (context) => const NotifPage())
                                  );
                               }
                             ),
@@ -61,7 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             onTap:() {
                                  Navigator.push(
                                   context, 
-                                 MaterialPageRoute(builder: (context) => NotificationsPage())
+                                 MaterialPageRoute(builder: (context) => const NotificationsPage())
                                  );
                               }
                             ),

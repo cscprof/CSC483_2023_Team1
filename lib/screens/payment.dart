@@ -1,8 +1,8 @@
 //import 'package:brig_project/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'widgets/headerPayment.dart';
+import 'widgets/headerpayment.dart';
 //import 'package:brig_project/screens/confirm.dart';
-import 'widgets/PaymentBar.dart';
+import 'widgets/paymentbar.dart';
 
 
 enum Meal { flex, swipe }

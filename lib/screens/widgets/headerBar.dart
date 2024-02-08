@@ -28,7 +28,7 @@ class TopAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {
           Navigator.push(
             context, 
-            MaterialPageRoute(builder: (context) => SettingsPage())
+            MaterialPageRoute(builder: (context) => const SettingsPage())
           );
         },
         style: ElevatedButton.styleFrom(

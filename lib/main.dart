@@ -1,17 +1,17 @@
 import 'package:brig_project/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'screens/home.dart';
+/*import 'package:firebase_database/firebase_database.dart';
 import 'data/items.json';
 import 'firebase_options.dart';
 import 'firebase/items.dart';
 import 'firebase/users.dart';
 import 'firebase/orders.dart';
 import 'screens/login.dart';
-import 'screens/home.dart';
 import 'screens/order.dart';
 import 'screens/settings.dart';
-import 'screens/cart.dart';
+import 'screens/cart.dart'; */
 
 Future<void> main() async {
 
@@ -20,7 +20,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  UserClass userInput = await userRead("angela");
+  /*UserClass userInput = await userRead("angela");
   print(userInput.name);
   print(userInput.password);
 
@@ -35,7 +35,7 @@ Future<void> main() async {
     ItemClass pastItem = pastOrders[i];
     print(pastItem.name);
   }
-  
+  */
   // angela -- took this out
   //runApp(const HomePage()); // insert class name
   runApp(const MaterialApp(home: HomePage(),));

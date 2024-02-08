@@ -23,7 +23,7 @@ class ItemClass {
 
 
   /* 
-    TODO 
+    
       Create a funcion that return an images object form the web link
   */
   // get icon
@@ -88,7 +88,7 @@ Future<ItemClass> itemRead(String item) async {
 */
 Future<List<ItemClass>> categoryRead(String category) async {
   /*
-    TODO
+    
       error handle when a bad category is inputted
   */
   List<ItemClass> items = [];

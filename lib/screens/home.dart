@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'settings.dart'; // Import the Order.dart file
-import 'widgets/HeaderBar.dart';
-import 'widgets/BottomBar.dart';
+import 'widgets/headerbar.dart';
+import 'widgets/bottombar.dart';
 import 'order.dart';
 import 'reorder.dart';
 

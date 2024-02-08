@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'widgets/BottomBar.dart';
+import 'widgets/bottombar.dart';
 import '../data/itemdata.dart';
 import '../firebase/items.dart';
-import 'widgets/subcat1Widget.dart';
+import 'widgets/subcat1widget.dart';
 
 ItemData item = ItemData();
 

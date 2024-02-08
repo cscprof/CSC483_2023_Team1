@@ -1,7 +1,7 @@
 import 'package:brig_project/screens/subcat1.dart';
 import 'package:flutter/material.dart';
-import 'widgets/HeaderBar.dart';
-import 'widgets/BottomBar.dart';
+import 'widgets/headerbar.dart';
+import 'widgets/bottombar.dart';
 import '../data/itemdata.dart';
 
 ItemData item = ItemData();

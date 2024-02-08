@@ -50,7 +50,7 @@ Future<List> getPastOrders(String name) async {
     var orderNum = await userRef.child("saveOrders/$orderID").get();
     int j = 1;
     do {
-      ItemClass item = await itemRead(orderNum.child("item$j").value.toString());;
+      ItemClass item = await itemRead(orderNum.child("item$j").value.toString());
       usersOrder.items.add(item);
       j++;
     } while (orderNum.child("item$j").value != null);
@@ -79,7 +79,7 @@ Future<int> getLastedSavedOrder() async {
 
 Future<void> addSavedItem(String item) async {
 
-  DatabaseReference savedOrderRef = FirebaseDatabase.instance.ref("saveOrder");
+  //DatabaseReference savedOrderRef = FirebaseDatabase.instance.ref("saveOrder");
 
   
 

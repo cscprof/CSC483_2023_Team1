@@ -40,7 +40,6 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
         fixedColor: Colors.amber[300], 
         onTap:(value) {
           if (value == 0) {
-            print("first item selected");
             Navigator.push(
               context, 
               MaterialPageRoute(builder: (context) => const HomePage())

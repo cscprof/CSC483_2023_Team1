@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
-import 'widgets/HeaderBar.dart';
-import 'widgets/BottomBar.dart';
+import 'widgets/headerbar.dart';
+import 'widgets/bottombar.dart';
 import 'dart:math';
 
 
@@ -49,13 +49,13 @@ String calculateEstimatedTime() {
     double calculateTotalMealSwipes = 0;
 
     // Calculate the total price of items in the cart
-    widget.cartItems.forEach((item) {
+    for (var item in widget.cartItems) {
       total += item.priceInDollars;
-     });
+     }
 // calculate for meal swipes
-widget.cartItems.forEach((item) {
+for (var item in widget.cartItems) {
   calculateTotalMealSwipes += item.mealSwipes;
-});
+}
 
     return MaterialApp(
   home: Scaffold(
