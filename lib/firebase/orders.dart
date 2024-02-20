@@ -33,70 +33,40 @@ class OrderClass {
 
 Future<List> getPastOrders(String name) async {
   // able to get item from user past order
+
+  // TODO - what happends when user does not have any past orders
+
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
-  final order = await userRef.child("users/$name/pastOrders").get();  
+  final order = await userRef.child("orders/$name").get(); 
+  // !! BUG - if the user does not have a past order it crashes
 
   List orders = [];  
-  int i = 1;
+  int i = 0;
   do {
-    orders.add(order.child("order$i").value.toString());
-    i++;
-  } while (order.child("order$i").value != null);
-  
-  List list = [];
-  for (int i = 0; i < orders.length; i++) {
-    OrderClass usersOrder = OrderClass(orders[i], name);
+    OrderClass usersOrder = OrderClass("order$i", name);
     String? orderID = usersOrder.orderID;
-    var orderNum = await userRef.child("saveOrders/$orderID").get();
-    int j = 1;
+    var itemRef = await userRef.child("orders/$name/$orderID/items").get(); 
+    int j = 0;
     do {
-      ItemClass item = await itemRead(orderNum.child("item$j").value.toString());
+      String testing = itemRef.child("item$j").value.toString();
+      ItemClass item = await itemRead(testing); 
       usersOrder.items.add(item);
       j++;
-    } while (orderNum.child("item$j").value != null);
-    list.add(usersOrder);
-  }
-  return list;
+    } while (itemRef.child("item$j").value != null);
+    orders.add(usersOrder);
+    i++;
+
+  } while (order.child("order$i").value != null);
+
+  return orders;
 }
 
-Future<void> addSaveOrderItems(List items) async {
+Future<void> addNewOrder(String user, OrderClass order) async {
+  // add new order that the user just submitted
+  // TODO find a way to organize the orders properly
+
+  DatabaseReference usersRef = FirebaseDatabase.instance.ref("users/$user");
+  DatabaseReference saveOrdersRef = FirebaseDatabase.instance.ref("saveOrders");
 
 
-
-}
-
-Future<void> createNewSaveOrder() async {
-
-
-
-}
-
-Future<int> getLastedSavedOrder() async {
-
-
-  return 1006;
-}
-
-Future<void> addSavedItem(String item) async {
-
-  //DatabaseReference savedOrderRef = FirebaseDatabase.instance.ref("saveOrder");
-
-  
-
-  /* need to send out a JSON type of data
-
-  INPUT : items = {item1, item2, item3}
-
-  itemN => itemClass Object
-  "itemA" = item1.name
-
-    {
-      orderNum: {
-        item1: "itemA",
-        item2: "itemB",
-        ...
-        itemN: "itemN"
-      }
-    }
-  */
 }
