@@ -113,6 +113,7 @@ void updateFlex(String user, double flex) {
 
 // TODO - testing adding users to firebase
 Future<void> customStudentNewUser(String user, String password, int flex, String role, int swipes) async {
+  print("pre reference");
   DatabaseReference usersRef = FirebaseDatabase.instance.ref("users");
 
   print("Setting new user: $user, $password");
@@ -128,7 +129,19 @@ Future<void> customStudentNewUser(String user, String password, int flex, String
       "swipes" : swipes,
     }
   });
+
+  // should the user have an automatic order history created? 
+
+  DatabaseReference ordersRef = FirebaseDatabase.instance.ref("orders");
+
+  await ordersRef.update({
+    user : {}
+  });
+  print("orders ref is set");
+
 }
+
+// need a checking if all users have an order history associated with it
 
 Future<void> standardStudentNewUser(String user, String password) async {
   customStudentNewUser(user, password, 185, "student", 75);
