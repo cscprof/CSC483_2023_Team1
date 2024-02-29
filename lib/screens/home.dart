@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
                      );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.black), // Set the background color to black
+                      backgroundColor: MaterialStateProperty.all( const Color(0xffCB9700)), // Set the background color to black
                     ),
                     child: const Text('New Order', style: TextStyle(color: Colors.white)),
                   ),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                      );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.black), // Set the background color to black
+                       backgroundColor: MaterialStateProperty.all( const Color(0xffCB9700)), // Set the background color to black
                     ),
                     child: const Text('Re Order', style: TextStyle(color: Colors.white)),
                   ),

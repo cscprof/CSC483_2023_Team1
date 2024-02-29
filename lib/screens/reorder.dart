@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'widgets/headerbar.dart';
-// import 'widgets/BottomBar.dart';
+ import 'widgets/reorderbottom.dart';
 // import '../data/itemdata.dart';
-import 'home.dart';
 import 'package:brig_project/themes/theme_data.dart';
 import '../data/reorderdata.dart';
-import 'cart.dart';
+
 
 ReorderData item = ReorderData();
 
@@ -29,17 +28,8 @@ class ReorderScreen extends StatelessWidget {
       home: Scaffold(
         appBar: TopAppBar(AppBar(backgroundColor: const Color(0xFFBDBDBD),), "Reorder"),
         body: const ReorderTabBar(),
-        backgroundColor: const Color(0xFFBDBDBD),
-        bottomNavigationBar: ButtonBar(
-          alignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // IconButton(icon: const Icon(Icons.home), tooltip: 'Home', onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));},),
-            // IconButton(icon: const Icon(Icons.shopping_cart), tooltip: 'Cart', onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const ReorderPage()));},), 
-            // check background color
-            TextButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));}, icon: const Icon(Icons.home, color: Colors.black,), label: const Text('Home', style: TextStyle(color: Colors.black),), style: TextButton.styleFrom(foregroundColor: Colors.grey[400],)),
-            TextButton.icon(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage(cartItems: [],)));}, icon: const Icon(Icons.shopping_cart, color: Colors.black,), label: const Text('Cart', style: TextStyle(color: Colors.black),), style: TextButton.styleFrom(foregroundColor: Colors.grey[400],)),
-          ],
-        ),
+        backgroundColor:  const Color(0xffFEFFD4),
+        bottomNavigationBar: ReOrder(AppBar(), WhichPage.menu),
       ),
       theme: MyThemeData.baseTheme,
     );
@@ -113,7 +103,7 @@ class ReorderTabBar extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor: Colors.grey[400],), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
+                    trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor: const Color(0xffCB9700),), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
                     leading: ClipRRect(borderRadius: BorderRadius.circular(35), child: Image.asset(item['image'], width: 50, height: 50),),
                     contentPadding: const EdgeInsets.all(20.0),
                     shape: const Border(
@@ -164,7 +154,7 @@ class ReorderTabBar extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor: Colors.grey[400],), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
+                    trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor:  const Color(0xffCB9700),), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
                     leading: ClipRRect(borderRadius: BorderRadius.circular(35), child: Image.asset(item['image'], width: 50, height: 50),),
                     contentPadding: const EdgeInsets.all(20.0),
                     shape: const Border(

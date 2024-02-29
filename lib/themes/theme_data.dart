@@ -12,11 +12,11 @@ class MyThemeData {
 
         // fontFamily: GoogleFonts.lato().fontFamily,
 
-        /* textTheme: const TextTheme(
+        textTheme: const TextTheme(
           titleLarge: TextStyle(fontSize: 25.0, color: Colors.black, fontWeight: FontWeight.bold),
           titleMedium: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.bold),
           bodyMedium: TextStyle(fontSize: 14.0, color: Colors.black),
           bodySmall: TextStyle(fontSize: 12.0, color: Colors.black),
-        ), */
+        ), 
       );
 }

@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 enum WhichPage { home, checkout, order, subCat, menu }
 
 class BottomBar extends StatelessWidget implements PreferredSizeWidget {
-  Color? backgroundColor = Colors.grey[400];
+    Color? backgroundColor = const Color(0xffCB9700);
   Color shadowColor = Colors.black;
   Color textColor = Colors.white;
   //String textInput = "testing";

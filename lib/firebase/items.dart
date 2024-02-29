@@ -28,7 +28,7 @@ class ItemClass {
   */
   // get icon
   String getIcon () {
-    // TODO will get the icon that is stored on app
+    //  will get the icon that is stored on app
     return "temp icon";
   }
 

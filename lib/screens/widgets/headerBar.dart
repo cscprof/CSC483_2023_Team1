@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 
 class TopAppBar extends StatelessWidget implements PreferredSizeWidget {
-  Color? backgroundColor = Colors.grey[400];
+  Color? backgroundColor = const Color(0xffCB9700);
   Color shadowColor = Colors.black;
   String textInput = "testing";
   AppBar appBar;

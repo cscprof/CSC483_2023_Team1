@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
 import 'widgets/headerbar.dart';
-import 'widgets/bottombar.dart';
+import 'widgets/cartbottom.dart';
 import 'dart:math';
 
 
@@ -74,7 +74,7 @@ for (var item in widget.cartItems) {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 2,
-                        color: const Color(0xff2D2D2D),
+                        color: const Color(0xffCB9700),
                       ),
                     ),
                     child: ListTile(
@@ -173,7 +173,7 @@ for (var item in widget.cartItems) {
       //print('Proceed to Checkout');
                 },
             style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black, // Set the background color to black
+            backgroundColor : const Color(0xffCB9700)// Set the background color to black
           ),
             child: const Text('Proceed to Checkout',
             style: TextStyle(color: Colors.white),
@@ -184,7 +184,7 @@ for (var item in widget.cartItems) {
         ),
       ],
     ),
-    bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+    bottomNavigationBar: CartBottomBar(AppBar(), WhichPage.home),
   ),
 );
 

@@ -1,7 +1,7 @@
 import 'package:brig_project/screens/subcat1.dart';
+import 'package:brig_project/screens/widgets/orderbottom.dart';
 import 'package:flutter/material.dart';
 import 'widgets/headerbar.dart';
-import 'widgets/bottombar.dart';
 import '../data/itemdata.dart';
 
 ItemData item = ItemData();
@@ -17,7 +17,7 @@ class OrderPage extends StatelessWidget {
         appBar: TopAppBar(AppBar(), "New Order"),
         body: const Column(children: [Expanded(flex: 1, child: ListViewBuilder()),],),
         backgroundColor: const Color(0xffFEFFD8),
-        bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+        bottomNavigationBar: OrderBottomBar(AppBar(), WhichPage.menu),
       )
       );
   }

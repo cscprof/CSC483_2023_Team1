@@ -49,7 +49,7 @@ class Subcat1ListView extends StatelessWidget {
                       child: items[index].icon,//  Image.network(items[index].icon ?? ''),
                   ),
                   ),
-                  trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor: Colors.grey[400],), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
+                  trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor:  const Color(0xffCB9700),), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
                   // trailing: ,
                   contentPadding: const EdgeInsets.all(20.0),
                   // onTap: () {

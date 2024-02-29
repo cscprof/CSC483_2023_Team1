@@ -19,10 +19,10 @@ class SubCat1Page extends StatelessWidget {
       title: selectedCategory,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey[400],
+          backgroundColor: const Color(0xffCB9700),
           title: Text(selectedCategory, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white,),),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back_ios_rounded),
             onPressed: () {
               // Navigate back to the main subcategory selection
               Navigator.pop(context);
