@@ -2,7 +2,7 @@
 //import 'package:brig_project/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'widgets/headerSettingsN.dart';
-import 'widgets/BottomBar.dart';
+import 'widgets/bottombar.dart';
 
 class NotifPage extends StatelessWidget {
   const NotifPage({super.key});

@@ -5,7 +5,7 @@ import 'package:brig_project/screens/notificationspage.dart';
 import 'package:flutter/material.dart';
 import 'widgets/headerSettings.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'widgets/BottomBar.dart';
+import 'widgets/bottombar.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage ({Key? key}) : super(key: key);
