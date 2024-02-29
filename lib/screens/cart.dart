@@ -23,7 +23,7 @@ class CartItem {
 
   CartItem({required this.name, required this.priceInDollars, required this.mealSwipes});
 }
-List<ItemClass> OrdertoCart=[];
+/* List<ItemClass> OrdertoCart=[]; */
 
 class _CartPageState extends State<CartPage> {
 
@@ -185,7 +185,7 @@ for (var item in widget.cartItems) {
         ),
       ],
     ),
-    bottomNavigationBar: CartBottomBar(AppBar(), WhichPage.home),
+    bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
   ),
 );
 
