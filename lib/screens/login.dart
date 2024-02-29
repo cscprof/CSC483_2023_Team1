@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
              Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/backgroundColor.png"),
+                  image: AssetImage("assets/images/backgroundColor.png"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               top:10,
               left: 10,
               child: Image.asset(
-                "images/tornadoTransparent.png", 
+                "assets/images/tornadoTransparent.png", 
                 width: 800, 
                 height: 800, 
               ),
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               top:10,
               left: 10,
               child: Image.asset(
-                "images/geneva_logo.png", 
+                "assets/images/geneva_logo.png", 
               ),
             ),
            

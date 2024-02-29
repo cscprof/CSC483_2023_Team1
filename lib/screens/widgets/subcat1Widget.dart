@@ -1,4 +1,4 @@
-
+import 'package:brig_project/screens/customization.dart';
 import 'package:flutter/material.dart';
 import '../../firebase/items.dart';
 
@@ -52,14 +52,18 @@ class Subcat1ListView extends StatelessWidget {
                   trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor: Colors.grey[400],), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
                   // trailing: ,
                   contentPadding: const EdgeInsets.all(20.0),
-                  // onTap: () {
-                  //   debugPrint("Item pressed!"); // eventually navigate to subcat2page
-                  //   // add to cart on tap
-                  //   // function that takes the item input and add to the cart
-
-                  // },
-                  shape: const Border(
-                    bottom: BorderSide(width: 1, color: Color(0xff2D2D2D)),
+                  onTap: () {
+                  // eventually navigate to subcat2page
+                    // add to cart on tap
+                    // function that takes the item input and add to the cart
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CustomizationPage(selectedCustomization: items[index].name,),
+                    ));
+                  },
+                  shape: Border(
+                    top: index == 0 ? const BorderSide(width: 1, color: Color(0xff2D2D2D)) : BorderSide.none,
+                    bottom: const BorderSide(width: 1, color: Color(0xff2D2D2D)),
                   ),
                 );
               },
