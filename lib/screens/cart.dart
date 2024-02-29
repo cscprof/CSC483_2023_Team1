@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
 import 'widgets/headerbar.dart';
 import 'widgets/bottombar.dart';
+import '../firebase/items.dart';
 import 'dart:math';
 
 
@@ -23,6 +24,7 @@ class CartItem {
 
   CartItem({required this.name, required this.priceInDollars, required this.mealSwipes});
 }
+List<ItemClass> OrdertoCart=[];
 
 class _CartPageState extends State<CartPage> {
 
