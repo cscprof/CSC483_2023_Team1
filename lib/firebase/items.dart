@@ -31,17 +31,15 @@ class ItemClass {
 
     DatabaseReference subItemCatRef = FirebaseDatabase.instance.ref("item_custom/$s");
 
-    await subItemCatRef.get().then((snapshot) { // TODO feezes in here why????
+    await subItemCatRef.get().then((snapshot) { // get all items 
       for (final item in snapshot.children) {
         String name = item.child("name").value.toString();
         String icon = item.child("icon").value.toString();
-        print("got new item");
-        print('$name $icon');
         SubItemClass value = SubItemClass(name, icon);
         subItemList.add(value);
       }
     });
-    print('final list length: ' + subItemList.length.toString());
+    
     subCategoryItems = subItemList;
   }
 
