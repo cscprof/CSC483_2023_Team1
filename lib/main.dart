@@ -1,7 +1,9 @@
 import 'package:brig_project/firebase_options.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'data/items.json';
 import 'firebase_options.dart';
@@ -21,15 +23,28 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform
   );
 
-  print("end initialization");
-  OrderClass ryansOrder = OrderClass("orderN", "ryan");
-  ItemClass item1 = ItemClass("Big Cookie", "2.5", "false", "big_cookie.txt", "big_cookie.png");
-  ItemClass item2 = ItemClass("Grilled Cheese", "4", "true", "grilled_cheese.txt", "grilled_cheese.png");
-  ItemClass item3 = ItemClass("Green Apple", "1.5", "true", "green_apple.txt", "green_apple.png");
-  ryansOrder.items = [item1, item1, item1];
-  print("items created, adding new order");
-  addNewOrder(ryansOrder);
-  print("addNewOrder FIN");
+  // print("end initialization");
+  // OrderClass ryansOrder = OrderClass("orderN", "ryan");
+  //ItemClass item1 = ItemClass("Big Cookie", "2.5", "false", "big_cookie.txt", "big_cookie.png", "");
+  // ItemClass item2 = ItemClass("Grilled Cheese", "4", "true", "grilled_cheese.txt", "grilled_cheese.png");
+  // ItemClass item3 = ItemClass("Green Apple", "1.5", "true", "green_apple.txt", "green_apple.png");
+  // ryansOrder.items = [item1, item1, item1];
+  // print("items created, adding new order");
+  // addNewOrder(ryansOrder);
+  // print("addNewOrder FIN");
+
+  String item = "cheeseburger";
+  print('starting');
+  ItemClass cheeseburger = await itemRead(item);
+  print('got ' + cheeseburger.name);
+  List<SubItemClass> subCat = cheeseburger.subCategoryItems;
+  print('current length: ' + subCat.length.toString());
+  for(int i = 0; i < subCat.length; i++) {
+    SubItemClass currentSubItem = subCat[i];
+    print("Current Sub Category for $item: " + currentSubItem.name);
+  }
+  print('done');
+
 
   // List pastOrders = await getPastOrders("zoe");
   // for(int i = 0; i < pastOrders.length; i++){
@@ -45,11 +60,12 @@ Future<void> main() async {
   //   });
   // }
 
-  standardStudentNewUser("joe", "pjoe");
-  
+
+
   // angela -- took this out
   runApp(const HomePage()); // insert class name
-  //runApp(const MaterialApp(home: HomePage(),));
+
+  //runApp(const MaterialApp(home: LoginPage(),));
 } 
 // ------------------ RUN TO SEE GENERAL PAGES ------------------ //
 // void main() {
