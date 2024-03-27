@@ -1,4 +1,4 @@
-import 'package:brig_project/screens/notificationspage.dart';
+//import 'package:brig_project/screens/notificationspage.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -116,7 +116,7 @@ Future<List<ItemClass>> categoryRead(String category) async {
   */
   List<ItemClass> items = [];
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
-
+  
   await categoryRef.get().then((snapshot) {
     for (final item in snapshot.children) {
       String name = item.child("name").value.toString();
@@ -136,14 +136,10 @@ Future<List<ItemClass>> categoryRead(String category) async {
 
 // TODO :: create a function that will add key (subCat) and value (" ")
 Future<void> addItemCustom(String category, List<String> items) async {
-  print("Adding new items to $category");
-
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("item_custom/$category");
-  
   for(int i = 0; i < items.length; i++) {
     String element = items[i];
     String title = element.replaceAll(' ', '_').toLowerCase();
-    print("Current Item Name: $title");
     await categoryRef.update({
       title : {
         "name" : element,
