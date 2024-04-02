@@ -10,6 +10,17 @@ class MyThemeData {
           tertiary: const Color(0xffCB9700), // yellow
         ),
 
+        /*
+          Ryan - 
+
+          What about :
+            1. Text
+            2. Images
+            3. Numbers
+            4. Sizes
+          Should we adjust things based on the device being used?
+        */
+
         // fontFamily: GoogleFonts.lato().fontFamily,
 
         textTheme: const TextTheme(
