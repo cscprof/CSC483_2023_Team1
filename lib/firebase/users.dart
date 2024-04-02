@@ -25,6 +25,20 @@ class UserClass  {
     addNewOrder(submitOrder);
   }
 
+  double totalPrice() {
+    double total = 0;
+    for (int i = 0; i < cart.length; i++) {
+      total += cart[i].price;
+    }
+    return total;
+  }
+
+  int totalSwipes() {
+    int total = 0;
+
+    return total;
+  }
+  
 }
 
 UserClass userErr = UserClass('err', 'err');

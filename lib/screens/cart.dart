@@ -48,21 +48,20 @@ class _CartPageState extends State<CartPage> {
   }
   @override
   Widget build(BuildContext context) {
-    double total = 0;
-    double calculateTotalMealSwipes = 0;
+    double total = currentUser.totalPrice();
+    int calculateTotalMealSwipes = currentUser.totalSwipes();
 
-    for (ItemClass item in currentUser.cart) {
-      total += item.price;
-    }
-
+    // for (ItemClass item in currentUser.cart) {
+    //   total += item.price;
+    // }
     // Calculate the total price of items in the cart
     // for (var item in widget.cartItems) {
     //   total += item.priceInDollars;
     // }
     // calculate for meal swipes
-    for (var item in widget.cartItems) {
-      calculateTotalMealSwipes += item.mealSwipes;
-    }
+    // for (var item in widget.cartItems) {
+    //   calculateTotalMealSwipes += item.mealSwipes;
+    // }
 
     return MaterialApp(
     home: Scaffold(
