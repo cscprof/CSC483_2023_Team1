@@ -9,7 +9,7 @@ ItemData item = ItemData();
 class SubCat1Page extends StatelessWidget {
   final String selectedCategory;
 
-  const SubCat1Page({required this.selectedCategory, Key? key}) : super(key: key);
+  const SubCat1Page({required this.selectedCategory, super.key});
 
   @override
   Widget build(BuildContext context) {

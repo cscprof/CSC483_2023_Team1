@@ -18,7 +18,7 @@ launchURLApp() async {
 }
 
 class LoginPage extends StatefulWidget {
-  const LoginPage ({Key? key}) : super(key: key);
+  const LoginPage ({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
               width: 250,
              child: TextFormField(         
              controller: userController,     
-             obscureText: true,
+             obscureText: false,
              decoration: const InputDecoration(
              border: OutlineInputBorder(),
              labelText: 'Student ID:',
@@ -113,6 +113,10 @@ class _LoginPageState extends State<LoginPage> {
                     context, 
                    MaterialPageRoute(builder: (context) => const HomePage())
                            );
+                  }
+                  else
+                  {
+                   const Text('Incorrect Username or Password');
                   }
                }
               ),    

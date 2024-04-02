@@ -1,12 +1,13 @@
 // import 'package:brig_project/screens/cart.dart';
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class CustomizationListView extends StatefulWidget {
   final List<String> customizationOptions;
   final Function(List<String>) onCustomizationSelected;
 
-  const CustomizationListView({required this.customizationOptions, required this.onCustomizationSelected, Key? key}) : super(key: key);
-
+  const CustomizationListView({required this.customizationOptions, required this.onCustomizationSelected, super.key});
   @override
   _CustomizationListViewState createState() => _CustomizationListViewState();
 }

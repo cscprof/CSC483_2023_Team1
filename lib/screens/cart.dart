@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
 import 'widgets/headerbar.dart';
-import 'widgets/bottombar.dart';
+import 'widgets/cartbottom.dart';
 import 'dart:math';
 
 
@@ -185,7 +185,7 @@ for (var item in widget.cartItems) {
         ),
       ],
     ),
-    bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+    bottomNavigationBar: CartBottomBar(AppBar(), WhichPage.home),
   ),
 );
 
