@@ -13,7 +13,7 @@ class ItemClass {
   bool isErr = false; // error bit if returned false value
 
   ItemClass(String n, String p, String s, String d, String i, String subCat) {
-    print('Current item: $n');
+    //print('Current item: $n');
     if (name == 'err') {
       isErr = true;
     }
@@ -27,7 +27,7 @@ class ItemClass {
   }
 
   void getSubItem(String s) async {
-    print('subItem tag is $s');
+    //print('subItem tag is $s');
     List<SubItemClass> subItemList = [];
     if (s == "") return; // return nothing if there is not a subCatItem for item
 
@@ -38,7 +38,7 @@ class ItemClass {
         String name = item.child("name").value.toString();
         String icon = item.child("icon").value.toString();
         SubItemClass value = SubItemClass(name, icon);
-        print('Current subItem found: ' + value.name);
+        //print('Current subItem found: ' + value.name);
         subItemList.add(value);
       }
     });
@@ -51,6 +51,7 @@ class ItemClass {
 class SubItemClass {
   String name = " ";
   Image? icon;
+  bool isSelected = false; // if item is selected
 
   SubItemClass (String n, String i) {
     name = n;
@@ -75,7 +76,6 @@ ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err');
 */
 
 Future<ItemClass> itemRead(String item) async {
-  print('Item Read: $item');
   List categories = ["drink", "entree", "fruit", "side", "dessert"];
   DatabaseReference itemRef = FirebaseDatabase.instance.ref();
   DataSnapshot event; 
@@ -97,7 +97,7 @@ Future<ItemClass> itemRead(String item) async {
   String descript = event.child("description").value.toString();
   String icon = event.child("icon").value.toString();
   String subCat = event.child("item_custom").value.toString();
-  print('Items subCat: $subCat');
+  //print('Items subCat: $subCat');
 
   ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat);
 
@@ -117,9 +117,8 @@ Future<ItemClass> itemRead(String item) async {
 */
 Future<List<ItemClass>> categoryRead(String category) async {
   /*
-    error handle when a bad category is inputted
+   TODO error handle when a bad category is inputted
   */
-  print('Category Read');
   List<ItemClass> items = [];
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
   
@@ -130,9 +129,8 @@ Future<List<ItemClass>> categoryRead(String category) async {
       String isSwipe = item.child("isSwipe").value.toString();
       String descript = item.child("description").value.toString();
       String icon = item.child("icon").value.toString();
-      String subCat = item.child("subCat").value.toString();
-      print('Current Sub Category: $subCat');
-
+      String subCat = item.child("item_custom").value.toString();
+      
       ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat);
       items.add(snapshot);
     }

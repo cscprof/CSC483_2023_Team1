@@ -44,10 +44,10 @@ class Subcat1ListView extends StatelessWidget {
                         color: const Color.fromARGB(255, 11, 85, 196)
                       ),
                     ],
-                  ), //Text('\$${items[index].price?.toString() ?? ''}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),
+                  ), 
                   leading: SizedBox( width: 100, height: 100,
-                    child: ClipRRect(borderRadius: BorderRadius.circular(35), //child: Image.asset(items[index].icon ?? '', width: 50, height: 50),
-                      child: items[index].icon,//  Image.network(items[index].icon ?? ''),
+                    child: ClipRRect(borderRadius: BorderRadius.circular(35), 
+                      child: items[index].icon,
                   ),
                   ),
                   trailing: TextButton(
@@ -64,13 +64,17 @@ class Subcat1ListView extends StatelessWidget {
                   // trailing: ,
                   contentPadding: const EdgeInsets.all(20.0),
                   onTap: () {
-                  // eventually navigate to subcat2page
                     // add to cart on tap
                     // function that takes the item input and add to the cart
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CustomizationPage(selectedCustomization: items[index].name,),
-                    ));
+                    if (items[index].subCategoryItems.isNotEmpty) { // maybe turn this inot a button? 
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CustomizationPage(selectedItem: items[index]),
+                      ));
+                    } else {
+                      debugPrint('Does not have customizations!!');
+                    }
+                    
                   },
                   shape: Border(
                     top: index == 0 ? const BorderSide(width: 1, color: Color(0xff2D2D2D)) : BorderSide.none,

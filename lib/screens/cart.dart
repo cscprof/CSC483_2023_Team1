@@ -52,18 +52,6 @@ class _CartPageState extends State<CartPage> {
     double total = currentUser.totalPrice();
     int calculateTotalMealSwipes = currentUser.totalSwipes();
 
-    // for (ItemClass item in currentUser.cart) {
-    //   total += item.price;
-    // }
-    // Calculate the total price of items in the cart
-    // for (var item in widget.cartItems) {
-    //   total += item.priceInDollars;
-    // }
-    // calculate for meal swipes
-    // for (var item in widget.cartItems) {
-    //   calculateTotalMealSwipes += item.mealSwipes;
-    // }
-
     return MaterialApp(
     home: Scaffold(
       backgroundColor: const Color(0xffFEFFD8),
@@ -89,7 +77,7 @@ class _CartPageState extends State<CartPage> {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('isSwipe: ${item.isSwipe.toString()}'),//Text('Meal Swipes: ${item.mealSwipes}'),
+                            Text('total modifications: ${totalModifiedItems(currentUser.cart[index].subCategoryItems)}'),//Text('Meal Swipes: ${item.mealSwipes}'),
                           ],
                         ),
                         trailing: Row(
@@ -190,23 +178,15 @@ class _CartPageState extends State<CartPage> {
   }
 }
 
-  //void main() {
-  //   runApp(MaterialApp(
-  //     home: CartPage(
-  //       cartItems: [
-  //         CartItem(name: 'Item 1', quantity: 2, price: 10.0),
-  //         CartItem(name: 'Item 2', quantity: 1, price: 5.0),
-  //         CartItem(name: 'Item 3', quantity: 3, price: 8.0),
-  //       ],
-  //     ),
-  //   ));
-  // }
+int totalModifiedItems(List<SubItemClass> subItems) {
+  int total = 0;
+  for (int i = 0; i < subItems.length; i++) {
+    if(subItems[i].isSelected == true) {
+      total++;
+    }
+  }
+  return total;
+}
 
-  //
-  //  run your page
-  //  get information by calling one of my functions
-  //     - async : sit in idle and wait till information is gathered
-  //     - ryan will return the information to you when its all gathered
-  //  you will do what you want with the informaion using JSON filing stuff
 
 
