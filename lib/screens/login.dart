@@ -1,10 +1,72 @@
 //import 'dart:js';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:brig_project/screens/home.dart';
 //import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 //import 'widgets/headerBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../firebase/users.dart';
+
+//* A lovely friend from stack overlow is the source of the Alert Dialog Code
+showAlertDialog(BuildContext context) {
+
+  // set up the button
+  Widget errorButton = TextButton(
+    child: const Text("OK"),
+    onPressed: () {
+       Navigator.of(context, rootNavigator: true)
+                  .pop();(); 
+     },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: const Text("Login Error"),
+    content: const Text("Please put in a valid username and password"),
+    actions: [
+      errorButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+showAlertDialog1(BuildContext context) {
+
+  // set up the button
+  Widget errorButton = TextButton(
+    child: const Text("OK"),
+    onPressed: () {
+       Navigator.of(context, rootNavigator: true)
+                  .pop();(); 
+     },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: const Text("Error"),
+    content: const Text("Please fill out all required fields"),
+    actions: [
+      errorButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
 
 
 
@@ -107,19 +169,24 @@ class _LoginPageState extends State<LoginPage> {
                   // user: haylee, password: phaylee 
                  if (await isLoginCorrect(userController.text, passwordController.text))            
                  {  
-                  // ignore: use_build_context_synchronously
                   Navigator.push(
-                    // ignore: use_build_context_synchronously
                     context, 
                    MaterialPageRoute(builder: (context) => const HomePage())
                            );
                   }
-                  else
-                  {
-                   const Text('Incorrect Username or Password');
+                 
+                  else   if (userController.text.isEmpty || passwordController.text.isEmpty)
+                   {
+                    showAlertDialog1(context);
                   }
+                  
+                 else   {showAlertDialog(context);
+
+                  }
+                
                }
               ),    
+              
             const SizedBox(height:50),
              
               ElevatedButton(

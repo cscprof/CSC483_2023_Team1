@@ -28,8 +28,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 20,
-              left: MediaQuery.of(context).size.width / 3,
+              top: 50,
+              left: MediaQuery.of(context).size.width / 13,
               child: Image.asset(
                 "assets/images/tornadoTransparent.png",
                 width: 400,
@@ -38,11 +38,11 @@ class HomePage extends StatelessWidget {
             ),
             Positioned(
               top: 200,
-              left: MediaQuery.of(context).size.width / 5,
+              left: MediaQuery.of(context).size.width / 4.5,
               child: Image.asset(
                 "assets/images/wordBrig.png",
-                width: 700,
-                height: 500,
+                width: 500,
+                height: 300,
               ),
             ),
             Center(

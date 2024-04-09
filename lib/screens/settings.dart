@@ -31,7 +31,8 @@ class _SettingsPageState extends State<SettingsPage> {
       data: night ? ThemeData.dark() : ThemeData.light(),
       child: Scaffold(
         appBar: SettingsAppBar(AppBar(), 'Settings'),
-        body: Center(
+        body: 
+        Center( 
             child: ListView(               
                   children: [           
                     ListTile(

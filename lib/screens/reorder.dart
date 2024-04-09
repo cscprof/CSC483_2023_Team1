@@ -26,7 +26,7 @@ class ReorderScreen extends StatelessWidget {
     return MaterialApp(
       title: "Reorder Page",
       home: Scaffold(
-        appBar: TopAppBar(AppBar(backgroundColor: const Color(0xFFBDBDBD),), "Reorder"),
+         appBar: TopAppBar(AppBar(), 'Reorder Page'),
         body: const ReorderTabBar(),
         backgroundColor:  const Color(0xffFEFFD4),
         bottomNavigationBar: ReOrder(AppBar(), WhichPage.menu),
@@ -45,6 +45,7 @@ class ReorderTabBar extends StatelessWidget {
       initialIndex: 0,
       length: 2,
       child: Scaffold(
+         backgroundColor:  const Color(0xffFEFFD4),
         appBar: AppBar(
           bottom: TabBar(
             labelColor: Colors.black, // selected text color
