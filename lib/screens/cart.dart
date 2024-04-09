@@ -5,7 +5,6 @@ import 'widgets/cartbottom.dart';
 import 'dart:math';
 
 
-
 class CartPage extends StatefulWidget {
   final List<CartItem> cartItems;
 
@@ -15,7 +14,7 @@ class CartPage extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _CartPageState createState() => _CartPageState();
 }
-
+ 
 class CartItem {
   final String name;
   final double priceInDollars;
@@ -26,6 +25,7 @@ class CartItem {
 /* List<ItemClass> OrdertoCart=[]; */
 
 class _CartPageState extends State<CartPage> {
+   
 
 String calculateEstimatedTime() {
     // Assuming a base time for each item and a random factor for variety
@@ -69,6 +69,7 @@ for (var item in widget.cartItems) {
             itemCount: widget.cartItems.length,
             itemBuilder: (context, index) {
               final item = widget.cartItems[index];
+              bool? isChecked = true;
               return Column(
                 children: [
                   Container(
@@ -88,8 +89,21 @@ for (var item in widget.cartItems) {
                       ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
+                        children: [    
                           Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
+                       Checkbox(
+                          tristate: true,
+                          fillColor: MaterialStateProperty.resolveWith((selected) {
+     
+      if (selected.contains(MaterialState.pressed)) {
+      
+      }
+      return const Color(0xffCB9700);
+    }),
+                        value: isChecked,
+                  onChanged: (bool? value) {
+                         setState(() {
+                                    }); } ),
                           const SizedBox(width: 16),
                           ElevatedButton(
                             onPressed: () {
