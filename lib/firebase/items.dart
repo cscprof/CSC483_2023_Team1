@@ -1,3 +1,4 @@
+//import 'package:brig_project/screens/notificationspage.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +7,16 @@ class ItemClass {
   double price = 0.0; // convert to int
   bool isSwipe = false; // convert to bool
   String descript = "temp_desc";
+  String category = "temp_category";
   Image? icon; // change to different object
+  bool swipeSelectect = false;
+  
+  List<SubItemClass> subCategoryItems = []; // all of the potential subItems attached to item
 
   bool isErr = false; // error bit if returned false value
 
-  ItemClass(String n, String p, String s, String d, String i) {
+  ItemClass(String n, String p, String s, String d, String i, String subCat, String c) {
+    //print('Current item: $n');
     if (name == 'err') {
       isErr = true;
     }
@@ -19,23 +25,48 @@ class ItemClass {
     isSwipe = s.toLowerCase() == 'true';
     descript = d;
     icon = Image.network(i);
+    category = c;
+    
+    getSubItem(subCat);
   }
 
+  void getSubItem(String s) async {
+    //print('subItem tag is $s');
+    List<SubItemClass> subItemList = [];
+    if (s == "") return; // return nothing if there is not a subCatItem for item
 
-  /* 
+    DatabaseReference subItemCatRef = FirebaseDatabase.instance.ref("item_custom/$s");
+
+    await subItemCatRef.get().then((snapshot) { // get all items 
+      for (final item in snapshot.children) {
+        String name = item.child("name").value.toString();
+        String icon = item.child("icon").value.toString();
+        SubItemClass value = SubItemClass(name, icon);
+        //print('Current subItem found: ' + value.name);
+        subItemList.add(value);
+      }
+    });
     
-      Create a funcion that return an images object form the web link
-  */
-  // get icon
-  String getIcon () {
-    //  will get the icon that is stored on app
-    return "temp icon";
+    subCategoryItems = subItemList;
   }
 
 }
 
+class SubItemClass {
+  String name = " ";
+  Image? icon;
+  bool isSelected = false; // if item is selected
+
+  SubItemClass (String n, String i) {
+    name = n;
+    icon = Image.network(i);
+  }
+}
+
+SubItemClass blankSubItem = SubItemClass('err', 'err');
+
 // error item object
-ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err');
+ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err', 'err');
 
 /*
   itemRead Description:
@@ -53,9 +84,9 @@ Future<ItemClass> itemRead(String item) async {
   DatabaseReference itemRef = FirebaseDatabase.instance.ref();
   DataSnapshot event; 
   int i = 0;
-
+  String category = "";
   do { 
-    String category = categories[i];
+    category = categories[i];
     event = await itemRef.child("items/$category/$item").get();
     i++;
     if (i > 5) {
@@ -69,8 +100,10 @@ Future<ItemClass> itemRead(String item) async {
   String isSwipe = event.child("isSwipe").value.toString();
   String descript = event.child("description").value.toString();
   String icon = event.child("icon").value.toString();
+  String subCat = event.child("item_custom").value.toString();
+  //print('Items subCat: $subCat');
 
-  ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
+  ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category);
 
   return snapshot;
 }
@@ -88,12 +121,11 @@ Future<ItemClass> itemRead(String item) async {
 */
 Future<List<ItemClass>> categoryRead(String category) async {
   /*
-    
-      error handle when a bad category is inputted
+   TODO error handle when a bad category is inputted
   */
   List<ItemClass> items = [];
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
-
+  
   await categoryRef.get().then((snapshot) {
     for (final item in snapshot.children) {
       String name = item.child("name").value.toString();
@@ -101,11 +133,28 @@ Future<List<ItemClass>> categoryRead(String category) async {
       String isSwipe = item.child("isSwipe").value.toString();
       String descript = item.child("description").value.toString();
       String icon = item.child("icon").value.toString();
-
-      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon);
+      String subCat = item.child("item_custom").value.toString();
+      
+      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category);
       items.add(snapshot);
     }
   });
 
   return items;
 }
+
+// TODO :: create a function that will add key (subCat) and value (" ")
+Future<void> addItemCustom(String category, List<String> items) async {
+  DatabaseReference categoryRef = FirebaseDatabase.instance.ref("item_custom/$category");
+  for(int i = 0; i < items.length; i++) {
+    String element = items[i];
+    String title = element.replaceAll(' ', '_').toLowerCase();
+    await categoryRef.update({
+      title : {
+        "name" : element,
+        "icon" : title + ".png" //  maybe?? just trying to add tag at end
+      }
+    });
+  }
+}
+

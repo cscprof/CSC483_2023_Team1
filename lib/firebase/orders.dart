@@ -1,102 +1,166 @@
+import 'package:brig_project/firebase/users.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'items.dart';
 
 class OrderClass {
-  String? orderID;
-  String? user;
-  List items = [];
+  String orderID = "blank";
+  String user = "blank";
+  bool isFavorite = false;
+  List<ItemClass> items = [];
+  List<SwipeClass> swipeItemSelected = [];
 
-  OrderClass(String o, String u) {
+  OrderClass(String o, String u, bool f) {
     orderID = o;
     user = u;
+    isFavorite = f;
+  }
+
+  double totalPrice() {
+    double total = 0;
+    for (int i = 0; i < items.length; i++) {
+      total += items[i].price;
+    }
+    return total;
+  }
+
+  void addItemToSwipe(ItemClass item) {
+    if(swipeItemSelected.isEmpty) { // if there is not an item selected just yet
+      SwipeClass swipe = SwipeClass();
+      swipe.swipeObject.update(item.category, (value) => item);
+      swipeItemSelected.add(swipe);
+      debugPrint('No current swipe object, creating new one with item : ${item.category} - ${item.name}');
+    } else {
+      debugPrint('Total number of swipe objects : ${swipeItemSelected.length}');
+      for (int i = 0; i < swipeItemSelected.length; i++) { 
+        if (swipeItemSelected[i].swipeObject[item.category] == Null) { // if the category is not filled
+          swipeItemSelected[i].swipeObject[item.category] = item;
+          debugPrint('Swipe object ${i+1} has a spot to fill : ${item.category} - ${item.name}');
+          break;
+          // need to leave forloop when its done
+        } else if (i == swipeItemSelected.length-1 && swipeItemSelected[i].swipeObject[item.category] != Null) { // at end of list, need to add a new swipe to input item
+          SwipeClass newSwipe = SwipeClass();
+          swipeItemSelected.add(newSwipe);  
+          debugPrint('Searched all swipe objects, making a new one');
+        } 
+      }
+    }
+    debugPrint('--fin--');
   }
 }
 
-
+class SwipeClass {
+  Map<String, Object> swipeObject = {
+    "entree" : Null,
+    "side" : Null,
+    "fruit" : Null,
+    "drink" : Null, 
+    "dessert" : Null
+  };
+}
 /*
   getPastOrders Description:
     
-    PURPOSE: To retrieve every past order of the user selected. Will be used in
-    displaying a quicker options for selecting previous orders. 
+    PURPOSE: 
 
-    INPUT: the name of the user, which is the username login info that is used to 
-    get into the app itself
+    INPUT: 
 
-    OUTPUT: List - A list of order objects in numberical order: order 1001, 1003, 1004, etc
-    
-    ORDER OBJECTS: Order objects are the individual orders created when a user 
-    submitts an order. They contain:
-      - orderID :: 1001, 1003, 1004, etc
-      - user :: ryan, zoe, etc
-      - items :: Item Objects which hold the item and its characteristics
+    OUTPUT: 
+
+    ORDER OBJECTS: 
 */
-
-Future<List> getPastOrders(String name) async {
+String printSwipeClass (SwipeClass swipe) {
+  return 'Entree : ${swipe.swipeObject['entree']}\nSide : ${swipe.swipeObject['side']}\nFruit : ${swipe.swipeObject['fruit']}\nDrink : ${swipe.swipeObject['drink']}\nDessert : ${swipe.swipeObject['dessert']}';
+}
+Future<List<OrderClass>> getPastOrders(String name) async {
   // able to get item from user past order
+  // TODD - get only 5 most recent based on ti
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
-  final order = await userRef.child("users/$name/pastOrders").get();  
-
-  List orders = [];  
-  int i = 1;
-  do {
-    orders.add(order.child("order$i").value.toString());
-    i++;
-  } while (order.child("order$i").value != null);
-  
-  List list = [];
-  for (int i = 0; i < orders.length; i++) {
-    OrderClass usersOrder = OrderClass(orders[i], name);
+  final order = await userRef.child("orders/$name").get(); 
+  // !! TODO - if the user does not have a past order it crashes
+  debugPrint('Running getPastOrders for $name');
+  List<OrderClass> orders = [];  
+  int i = 0;
+  do { // this is getting stuck here why ? 
+    OrderClass usersOrder = OrderClass("order$i", name, false);
     String? orderID = usersOrder.orderID;
-    var orderNum = await userRef.child("saveOrders/$orderID").get();
-    int j = 1;
-    do {
-      ItemClass item = await itemRead(orderNum.child("item$j").value.toString());
+    var itemRef = await userRef.child("orders/$name/$orderID/items").get(); 
+    if (!itemRef.exists) {
+      debugPrint('breaking');
+      break;
+    }
+    int j = 0;
+    do { // get every item in saved orders
+      String testing = itemRef.child("item$j").value.toString();
+      ItemClass item = await itemRead(testing); 
       usersOrder.items.add(item);
       j++;
-    } while (orderNum.child("item$j").value != null);
-    list.add(usersOrder);
-  }
-  return list;
+    } while (itemRef.child("item$j").exists);
+    bool isFavoriteResult = order.child("$orderID/favorite").value as bool;
+    usersOrder.isFavorite = isFavoriteResult;
+    orders.add(usersOrder);
+    i++;
+  } while (order.child("order$i").exists);
+  return orders;
 }
 
-Future<void> addSaveOrderItems(List items) async {
+Future<void> addNewOrder(OrderClass order) async {
+  debugPrint("Adding order: ${order.orderID} for ${order.user}");
+  order.items.forEach((element) {
+    debugPrint('Item : ${element.name}');
+  },);
+  // add new order that the user just submitted
+  // need to check if user has an order history
 
-
-
-}
-
-Future<void> createNewSaveOrder() async {
-
-
-
-}
-
-Future<int> getLastedSavedOrder() async {
-
-
-  return 1006;
-}
-
-Future<void> addSavedItem(String item) async {
-
-  //DatabaseReference savedOrderRef = FirebaseDatabase.instance.ref("saveOrder");
-
+  // this is so ugly wow has to be a better way
+  // hopefully making a reference to the database is not that taxing on application
   
-
-  /* need to send out a JSON type of data
-
-  INPUT : items = {item1, item2, item3}
-
-  itemN => itemClass Object
-  "itemA" = item1.name
-
-    {
-      orderNum: {
-        item1: "itemA",
-        item2: "itemB",
-        ...
-        itemN: "itemN"
-      }
+  String user = currentUser.name;
+  // find what was the latest order by looping through all current orders
+  // very slow, definitly a better way??
+  DatabaseReference ordersRef = FirebaseDatabase.instance.ref("orders");
+  var currentOrder = await ordersRef.child(user).get();
+  if (!currentOrder.exists) {
+    ordersRef.update({
+      user : ""
+    });
+    currentOrder = await ordersRef.child(user).get();
+  }
+  int i = 0;
+  while(currentOrder.child("order$i").value != null) {
+    i++;
+  }
+  // using the last order found, make a new order and update within the users profile
+  DatabaseReference newOrderRef = FirebaseDatabase.instance.ref("orders/$user");
+  await newOrderRef.update({
+    "order$i" : {
+      "favorite" : order.isFavorite,
+      "last_ordered" : DateTime.now().toString(), 
+      "items" : {}
     }
-  */
+  });
+  // add the items individually in the "items" part of the order
+  DatabaseReference newItemsRef = FirebaseDatabase.instance.ref("orders/$user/order$i/items");
+  for (int j = 0; j < order.items.length; j++) {
+    String itemID = "item$j";
+    ItemClass item = order.items[j];
+    await newItemsRef.update({
+      itemID : item.name.toLowerCase().replaceAll(' ', '_')
+    });
+  }
+  
 }
+
+// add the current order to the "active_orders" section in firebase
+
+// update the order that is completed within the "active_orders" section
+
+Future<void> estimateTime() async {
+  // calulate the estimate time of the order based on factors from
+  // the database and the current order
+}
+
+// delete old orders that are past a certain date from last use
+
+// will I need a make "order purchase/made" package function? 
+

@@ -1,3 +1,4 @@
+import 'package:brig_project/firebase/users.dart';
 import 'package:brig_project/screens/home.dart';
 import 'package:flutter/material.dart';
 //import 'package:brig_project/screens/confirm.dart';
@@ -72,6 +73,7 @@ class ConfirmPage extends StatelessWidget {
                 
                onPressed: ()
                 {
+                  currentUser.clearCart(); // need to put here to allow tiem for database to upload information
                  Navigator.push(
                     context, 
                    MaterialPageRoute(builder: (context) => const HomePage())
