@@ -25,14 +25,14 @@ class OrderClass {
     ORDER OBJECTS: 
 */
 
-Future<List> getPastOrders(String name) async {
+Future<List<OrderClass>> getPastOrders(String name) async {
   // able to get item from user past order
 
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
   final order = await userRef.child("orders/$name").get(); 
   // !! TODO - if the user does not have a past order it crashes
 
-  List orders = [];  
+  List<OrderClass> orders = [];  
   int i = 0;
   do {
     OrderClass usersOrder = OrderClass("order$i", name);
@@ -69,7 +69,6 @@ Future<void> addNewOrder(OrderClass order) async {
   while(currentOrder.child("order$i").value != null) {
     i++;
   }
-  print("Current order: order$i");
   // using the last order found, make a new order and update within the users profile
   DatabaseReference newOrderRef = FirebaseDatabase.instance.ref("orders/$user");
   await newOrderRef.update({
@@ -79,14 +78,11 @@ Future<void> addNewOrder(OrderClass order) async {
       "items" : {}
     }
   });
-  print("uploaded order JSON");
   // add the items individually in the "items" part of the order
   DatabaseReference newItemsRef = FirebaseDatabase.instance.ref("orders/$user/order$i/items");
-  int j = 0;
   for (int j = 0; j < order.items.length; j++) {
     String itemID = "item$j";
     ItemClass item = order.items[j];
-    print("current item: $itemID");
     await newItemsRef.update({
       itemID : item.name.toLowerCase().replaceAll(' ', '_')
     });

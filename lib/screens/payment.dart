@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'widgets/headerpayment.dart';
 //import 'package:brig_project/screens/confirm.dart';
 import 'widgets/paymentbar.dart';
+import '../firebase/users.dart';
 
 
 enum Meal { flex, swipe }
@@ -19,8 +20,8 @@ class PaymentState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
-     double total = 0;
-    double calculateTotalMealSwipes = 0;
+    double total = currentUser.totalPrice();
+    int calculateTotalMealSwipes = currentUser.totalSwipes();
     
     return MaterialApp(
         home:Scaffold(
@@ -31,7 +32,7 @@ class PaymentState extends State<PaymentPage> {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/backgroundColor.png"),
+                  image: AssetImage("assets/images/backgroundColor.png"),
                   fit: BoxFit.cover,
                 ),
               ),

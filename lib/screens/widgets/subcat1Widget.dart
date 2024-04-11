@@ -1,6 +1,7 @@
 import 'package:brig_project/screens/customization.dart';
 import 'package:flutter/material.dart';
 import '../../firebase/items.dart';
+import '../../firebase/users.dart';
 
 class Subcat1ListView extends StatelessWidget {
   final Future<List<ItemClass>> itemsFuture;
@@ -28,11 +29,7 @@ class Subcat1ListView extends StatelessWidget {
           return ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
-                // NEEDS THE FOLLOWING CHANGES
-                // trailing section: isSwipe indicator, add and/or customize button
-                // fix layout
                 return ListTile(
-                  // tileColor: Colors.white,
                   tileColor: const Color(0xfffeffe8),
                   title: Text(items[index].name, style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)),),
                   subtitle: Row(
@@ -40,27 +37,37 @@ class Subcat1ListView extends StatelessWidget {
                       Text('\$${items[index].price.toString()}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),
                       Icon(isSwipeIcon(items[index].isSwipe),
                         size: 17,
-                        color: const Color.fromARGB(255, 11, 85, 196)
+                        // color: const Color.fromARGB(255, 11, 85, 196)
+                        color: items[index].isSwipe ? const Color.fromARGB(255, 11, 85, 196) : Colors.red,
                       ),
                     ],
-                  ), //Text('\$${items[index].price?.toString() ?? ''}', style: const TextStyle(fontSize: 16, color: Color(0xff2D2D2D)),),
-                  leading: SizedBox( width: 100, height: 100,
-                    child: ClipRRect(borderRadius: BorderRadius.circular(35), //child: Image.asset(items[index].icon ?? '', width: 50, height: 50),
-                      child: items[index].icon,//  Image.network(items[index].icon ?? ''),
+                  ), 
+                  leading: SizedBox(width: 75, height: 75,
+                    child: ClipRRect(borderRadius: BorderRadius.circular(35), 
+                      child: items[index].icon,
                   ),
                   ),
-                  trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor:  const Color(0xffCB9700),), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
-                  // trailing: ,
+                  trailing: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white, 
+                      backgroundColor: const Color(0xffCB9700)
+                    ), 
+                    onPressed: () {
+                      debugPrint("Add button pressed!");
+
+                      if (items[index].subCategoryItems.isNotEmpty) { // maybe turn this inot a button? 
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CustomizationPage(selectedItem: items[index]),
+                      ));
+                      } else {
+                        debugPrint('Does not have customizations!! Adding ${items[index].name} to cart.');
+                        currentUser.cart.add(items[index]);
+                      }
+                    },
+                    child: const Text('Add'),
+                  ),
                   contentPadding: const EdgeInsets.all(20.0),
-                  onTap: () {
-                  // eventually navigate to subcat2page
-                    // add to cart on tap
-                    // function that takes the item input and add to the cart
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CustomizationPage(selectedCustomization: items[index].name,),
-                    ));
-                  },
                   shape: Border(
                     top: index == 0 ? const BorderSide(width: 1, color: Color(0xff2D2D2D)) : BorderSide.none,
                     bottom: const BorderSide(width: 1, color: Color(0xff2D2D2D)),

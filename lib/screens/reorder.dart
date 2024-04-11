@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/headerbar.dart';
- import 'widgets/reorderbottom.dart';
+ import 'widgets/orderbottom.dart';
 // import '../data/itemdata.dart';
 import 'package:brig_project/themes/theme_data.dart';
 import '../data/reorderdata.dart';
@@ -29,7 +29,7 @@ class ReorderScreen extends StatelessWidget {
         appBar: TopAppBar(AppBar(backgroundColor: const Color(0xFFBDBDBD),), "Reorder"),
         body: const ReorderTabBar(),
         backgroundColor:  const Color(0xffFEFFD4),
-        bottomNavigationBar: ReOrder(AppBar(), WhichPage.menu),
+        bottomNavigationBar: OrderBottomBar(AppBar(), WhichPage.menu),
       ),
       theme: MyThemeData.baseTheme,
     );
