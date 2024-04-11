@@ -1,4 +1,6 @@
-import 'package:brig_project/screens/customization.dart';
+
+// ignore_for_file: file_names
+//import 'package:brig_project/screens/customization.dart';
 import 'package:brig_project/firebase/orders.dart';
 import 'package:brig_project/firebase/users.dart';
 import 'package:brig_project/firebase/items.dart';
