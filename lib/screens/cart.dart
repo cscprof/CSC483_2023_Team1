@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
 import 'widgets/headerbar.dart';
@@ -12,7 +14,7 @@ import '../firebase/orders.dart';
 class CartPage extends StatefulWidget {
   final List<CartItem> cartItems;
 
-  const CartPage({Key? key, required this.cartItems}) : super(key: key);
+  const CartPage({super.key, required this.cartItems});
 
   @override
   _CartPageState createState() => _CartPageState();
@@ -55,7 +57,7 @@ class _CartPageState extends State<CartPage> {
 
     return MaterialApp(
     home: Scaffold(
-      backgroundColor: Color.fromARGB(255, 179, 179, 179),
+      backgroundColor: const Color.fromARGB(255, 179, 179, 179),
       appBar: TopAppBar(AppBar(), "Cart"),
       body: Column(
         children: [
@@ -101,8 +103,8 @@ class _CartPageState extends State<CartPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text("Remove Item"),
-                                        content: Text("Are you sure you want to remove this item from cart?"),
+                                        title: const Text("Remove Item"),
+                                        content: const Text("Are you sure you want to remove this item from cart?"),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -110,13 +112,13 @@ class _CartPageState extends State<CartPage> {
                                               removeItem(index);
                                               Navigator.of(context).pop(); // Close the alert dialog
                                             },
-                                            child: Text("Yes"),
+                                            child: const Text("Yes"),
                                           ),
                                           TextButton(
                                             onPressed: () {
                                               Navigator.of(context).pop(); // Close the alert dialog
                                             },
-                                            child: Text("No"),
+                                            child: const Text("No"),
                                           ),
                                         ],
                                       );

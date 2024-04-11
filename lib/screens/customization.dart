@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'widgets/bottombar.dart';
 import 'widgets/customizationWidget.dart';
 import '../firebase/items.dart';
+import 'package:brig_project/screens/widgets/orderbottom.dart';
 
 class CustomizationPage extends StatelessWidget {
   //final String selectedCustomization; // the selected menu item
@@ -34,7 +34,7 @@ class CustomizationPage extends StatelessWidget {
           ],
         ),
         backgroundColor: const Color(0xffFEFFD8),
-        bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+        bottomNavigationBar: OrderBottomBar(AppBar(), WhichPage.menu),
       ), 
     );
   }

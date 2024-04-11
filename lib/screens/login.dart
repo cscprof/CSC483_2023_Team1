@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     // user: haylee, password: phaylee 
                     if (await isLoginCorrect(userController.text, passwordController.text))            
                     {  
-                    // ignore: use_build_context_synchronously
+                   
                     // add currentUser here -- Ryan
                       currentUser = UserClass(userController.text, passwordController.text);
                       Navigator.push(

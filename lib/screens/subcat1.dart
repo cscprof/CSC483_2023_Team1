@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/bottombar.dart';
+import 'package:brig_project/screens/widgets/orderbottom.dart';
 import '../data/itemdata.dart';
 import '../firebase/items.dart';
 import 'widgets/subcat1widget.dart';
@@ -38,7 +38,7 @@ class SubCat1Page extends StatelessWidget {
           ],
         ),
         backgroundColor: const Color(0xffFEFFD8),
-        bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
+        bottomNavigationBar: OrderBottomBar(AppBar(), WhichPage.menu),
       ),
     );
   }
