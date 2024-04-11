@@ -1,10 +1,12 @@
 // ignore_for_file: must_be_immutable
 
+//import 'package:brig_project/firebase/orders.dart';
+import 'package:brig_project/firebase/users.dart';
 import 'package:brig_project/screens/cart.dart';
 import 'package:brig_project/screens/confirm.dart';
 import 'package:brig_project/screens/home.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';\
 
 
 enum WhichPage { home, checkout, order, subCat, menu }
@@ -40,6 +42,10 @@ class PaymentBar extends StatelessWidget implements PreferredSizeWidget {
               MaterialPageRoute(builder: (context) => const HomePage())
             );
           } else if (value == 1) {
+            // add order to firebase here
+            currentUser.uploadCurrentOrder();
+            currentUser.updateFlex(currentUser.totalPrice()); 
+            //currentUser.updateSwipes(currentUser.order.swipeItemSelected.length); // maybe should make this better lol
             Navigator.push(
               context, 
               MaterialPageRoute(builder: (context) => const ConfirmPage())

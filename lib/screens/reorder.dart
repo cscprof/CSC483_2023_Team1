@@ -3,18 +3,19 @@ import 'widgets/headerbar.dart';
  import 'widgets/reorderbottom.dart';
 // import '../data/itemdata.dart';
 import 'package:brig_project/themes/theme_data.dart';
-import '../data/reorderdata.dart';
+//import '../data/reorderdata.dart';
+import 'package:brig_project/firebase/orders.dart';
+import 'package:brig_project/firebase/users.dart';
+import 'package:brig_project/firebase/items.dart';
+import 'package:brig_project/screens/widgets/reorderWidget.dart';
 
-
-ReorderData item = ReorderData();
 
 class ReorderPage extends StatelessWidget {
   const ReorderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: ReorderScreen());
+    return const MaterialApp(home: ReorderScreen());
   }
 }
 
@@ -38,7 +39,7 @@ class ReorderScreen extends StatelessWidget {
 
 class ReorderTabBar extends StatelessWidget {
   const ReorderTabBar({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -62,62 +63,11 @@ class ReorderTabBar extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             // recents
-            Card(
-              child: ListView(
-                children: <Widget>[
-                  for (var item in item.recentItems) ...[
-                  ListTile(
-                    tileColor: const Color(0xfffeffe8),
-                    // title: Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)), textAlign: TextAlign.left,),
-                    // subtitle: Text(item['subtitle'], style: const TextStyle(), textAlign: TextAlign.center,),
-                    title: Column(
-                      children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            Row(
-                            children: <Widget>[
-                              Text(item['title'], style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff2D2D2D)), textAlign: TextAlign.left,),
-                            ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(item['subtitle'], style: const TextStyle(), textAlign: TextAlign.left,),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(item['datetime'], style: const TextStyle(), textAlign: TextAlign.left,),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                ButtonBar(
-                                  children: <Widget>[
-                                    TextButton(onPressed: () {debugPrint("Details button pressed!");}, style: TextButton.styleFrom(foregroundColor: Colors.black,), child: const Text('Details', style: TextStyle(decoration: TextDecoration.underline,),),),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    trailing: TextButton(style: TextButton.styleFrom(foregroundColor: Colors.black, backgroundColor: const Color(0xffCB9700),), onPressed: () {debugPrint("Add button pressed!");}, child: const Text('Add'),),
-                    leading: ClipRRect(borderRadius: BorderRadius.circular(35), child: Image.asset(item['image'], width: 50, height: 50),),
-                    contentPadding: const EdgeInsets.all(20.0),
-                    shape: const Border(
-                      bottom: BorderSide(width: 1, color: Color(0xff2D2D2D)),
-                    ),
-                    // onLongPress: () {debugPrint("Long pressed!");}
-                    ),
-                  ],
-              ],
-              ),
-            ),
+            Card(child: ReorderWidget(ordersList: currentUser.pastOrders)),
+            Card(child: ReorderWidget(ordersList: currentUser.favoriteOrders))
 
-            // favorites
-            Card(
+            // favorites 
+            /*Card(
               child: ListView(
                 children: <Widget>[
                   for (var item in item.favoriteItems) ...[
@@ -166,6 +116,7 @@ class ReorderTabBar extends StatelessWidget {
                 ],
               ),
             ),
+            */
           ],
         ),
       ),

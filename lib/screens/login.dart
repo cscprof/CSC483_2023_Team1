@@ -18,7 +18,8 @@ launchURLApp() async {
 }
 
 class LoginPage extends StatefulWidget {
-  const LoginPage ({Key? key}) : super(key: key);
+  const LoginPage ({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -31,10 +32,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return MaterialApp( 
       title:"Login Page",
-       home:Scaffold(
-         body: Stack(
-         children:[
-             Container(
+        home:Scaffold(
+          body: Stack(
+          children:[
+            Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/images/backgroundColor.png"),
@@ -53,95 +54,88 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Center(
             child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Positioned(
-                top:10,
-                left: 10,
-                child: Image.asset(
-                  "images/geneva_logo.png", 
-                ),
-              ),
-              const Text( 
-                'Sign In With Geneva Student ID:',
-                style: TextStyle(
-                fontSize: 40,
-                fontWeight:FontWeight.bold,
-                decorationColor:(Color(0xff2D2D2D)),  
-                ),
-              ),
-              const SizedBox(height:20),
-              SizedBox(
-                width: 250,
-                child: TextFormField(         
-                  controller: userController,     
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Student ID:',
-                  ),
-                ),     
-              ),
-              const SizedBox(height:20),
-              SizedBox(
-                width: 250,
-                child: TextFormField(           
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'PIN:',
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Positioned(
+                  top:10,
+                  left: 10,
+                  child: Image.asset(
+                    "images/geneva_logo.png", 
                   ),
                 ),
-              ),
-              const SizedBox(height:50),
-              ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700)),
+                const Text( 
+                  'Sign In With Geneva Student ID:',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight:FontWeight.bold,
+                    decorationColor:(Color(0xff2D2D2D)),  
+                  ),
                 ),
-                child: const Text('Sign In'),
-                onPressed: () async {
-                  // user: haylee, password: phaylee 
-                  if (await isLoginCorrect(userController.text, passwordController.text))            
-                  {  
-                  // ignore: use_build_context_synchronously
-                  // add currentUser here -- Ryan
-                    currentUser = UserClass(userController.text, passwordController.text);
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => const HomePage())
-                    );
+                const SizedBox(height:20),
+                SizedBox(
+                  width: 250,
+                  child: TextFormField(         
+                    controller: userController,     
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Student ID:',
+                    ),
+                  ),     
+                ),
+                const SizedBox(height:20),
+                SizedBox(
+                  width: 250,
+                  child: TextFormField(           
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'PIN:',
+                    ),
+                  ),
+                ),
+                const SizedBox(height:50),
+                ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700)),
+                  ),
+                  child: const Text('Sign In'),
+                  onPressed: () async {
+                    // user: haylee, password: phaylee 
+                    if (await isLoginCorrect(userController.text, passwordController.text))            
+                    {  
+                    // ignore: use_build_context_synchronously
+                    // add currentUser here -- Ryan
+                      currentUser = UserClass(userController.text, passwordController.text);
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(builder: (context) => const HomePage())
+                      );
+                    }
+                    else
+                    {
+                    const Text('Incorrect Username or Password');
+                    }
                   }
-                }
-              ),    
-              const SizedBox(height:50),
-              ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700)),
+                ),    
+                const SizedBox(height:50),
+                ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Color(0xffCB9700)),
+                  ),
+                  child: const Text('Lost ID Card?'), 
+                  onPressed: ()
+                  {
+                    launchURLApp();
+                  },
                 ),
-                child: const Text('Lost ID Card?'),
-                
-                onPressed: ()
-                {
-                  launchURLApp();
-                },
-              ),
-            ],  
-
-          ),
+              ],  
+            ),
           )
-         ]
-        ),
+        ]
+      ),
       )
     );
-
-  }
-
-
-
-
-      
-
-
-    
+  }   
 }

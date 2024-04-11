@@ -1,5 +1,6 @@
 import 'package:brig_project/firebase/items.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'orders.dart';
 //import 'items.dart';
 
@@ -8,19 +9,59 @@ class UserClass  {
   String password;
   List<ItemClass> cart = [];
   List<OrderClass> pastOrders = [];
-  
+  List<OrderClass> favoriteOrders = [];
+  bool isFavorite = false;
+  int totalSwipes = 0;
+  //OrderClass order = OrderClass('1001', currentUser.name, false); // crashing bug, cannot do this
   // add different information here that should be used when loged into the app
+  //OrderClass currentOrder = OrderClass('001', currentUser.name, false);
 
   UserClass(this.name, this.password) {
-    retrievePastOrders();
+    retrieveOrders();
+  }
+  
+  void retrieveOrders() async {
+    pastOrders = await getPastOrders(name);
+    for(int i = 0; i < pastOrders.length; i++) {
+      if(pastOrders[i].isFavorite) {
+        favoriteOrders.add(pastOrders[i]);
+      }
+    }
   }
 
-  void retrievePastOrders() async {
-    pastOrders = await getPastOrders(name);
+  void uploadCurrentOrder() {
+    OrderClass currentOrder = OrderClass('001', currentUser.name, isFavorite);
+    debugPrint('Creating new order to upload : ${currentUser.name} - isFavorite : $isFavorite');
+    currentOrder.items = currentUser.cart;
+    addNewOrder(currentOrder);
+  }
+
+  void updateFlex(double flex) async {
+    // TODO : need to change the logic to just be the remaining values
+    
+    DatabaseReference userRef = FirebaseDatabase.instance.ref('users/');
+    final userFlex = await userRef.child(currentUser.name).get();
+    String currentFlex = userFlex.child('flex').value.toString();
+    double newFlexValue = double.parse(currentFlex) - flex;
+
+    await userRef.child(currentUser.name).update({
+      'flex' : newFlexValue
+    });
+  }
+
+  void updateSwipes(int swipes) async {
+    DatabaseReference userRef = FirebaseDatabase.instance.ref('users/');
+    final userFlex = await userRef.child(currentUser.name).get();
+    String currentSwipes = userFlex.child('swipes').value.toString();
+    double newFlexValue = double.parse(currentSwipes) - swipes;
+
+    await userRef.child(currentUser.name).update({
+      'swipes' : newFlexValue
+    });
   }
 
   void submitCart() {
-    OrderClass submitOrder = OrderClass("1011", name);
+    OrderClass submitOrder = OrderClass("1011", name, false);
     submitOrder.items = cart;
     addNewOrder(submitOrder);
   }
@@ -33,10 +74,29 @@ class UserClass  {
     return total;
   }
 
-  int totalSwipes() {
-    int total = 0;
+  // int totalSwipes() {
+  //   int total = 0;
+  //   Map<String, int> numInCategory = {
+  //     "dessert" : 0,
+  //     "drink" : 0,
+  //     "entree" : 0,
+  //     "fruit" : 0,
+  //     "side" : 0
+  //   };
+  //   // update each value in map if the item is swipeable
+  //   for(int i = 0; i < cart.length; i++) {
+  //     if(cart[i].isSwipe) {
+  //       numInCategory.update(cart[i].category, (value) => value++);
+  //     }
+  //   }
+  //   // how to denote which 
 
-    return total;
+  //   return total;
+  // }
+
+  void clearCart() { // maybe stupid but trying to make reading easy -- can adjust if speed is needed
+    cart.clear();
+    debugPrint('cart is cleared');
   }
   
 }
