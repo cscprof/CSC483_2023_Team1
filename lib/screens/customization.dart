@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 import 'widgets/bottombar.dart';
 import 'widgets/customizationWidget.dart';
@@ -11,6 +13,7 @@ class CustomizationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
+    // ignore: unused_local_variable
     List<SubItemClass> customizationOptions = selectedItem.subCategoryItems; // Define customization options here
     print('Item Selected: ' + selectedItem.name);
     return MaterialApp(

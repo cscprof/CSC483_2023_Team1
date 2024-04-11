@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
 import 'widgets/headerbar.dart';
@@ -12,7 +14,7 @@ import '../firebase/orders.dart';
 class CartPage extends StatefulWidget {
   final List<CartItem> cartItems;
 
-  const CartPage({Key? key, required this.cartItems}) : super(key: key);
+  const CartPage({super.key, required this.cartItems});
 
   @override
   _CartPageState createState() => _CartPageState();

@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                   top:10,
                   left: 10,
                   child: Image.asset(
-                    "images/geneva_logo.png", 
+                    "assets/images/geneva_logo.png", 
                   ),
                 ),
                 const Text( 
@@ -167,7 +167,6 @@ class _LoginPageState extends State<LoginPage> {
                     // user: haylee, password: phaylee 
                     if (await isLoginCorrect(userController.text, passwordController.text))            
                     {  
-                    // ignore: use_build_context_synchronously
                     // add currentUser here -- Ryan
                       currentUser = UserClass(userController.text, passwordController.text);
                       Navigator.push(
