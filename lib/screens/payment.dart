@@ -6,8 +6,6 @@ import 'widgets/paymentbar.dart';
 import '../firebase/users.dart';
 
 
-enum Meal { flex, swipe }
-
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
 
@@ -16,12 +14,11 @@ class PaymentPage extends StatefulWidget {
 }
 
 class PaymentState extends State<PaymentPage> {
-  Meal? char = Meal.flex;
 
   @override
   Widget build(BuildContext context) {
     double total = currentUser.totalPrice();
-    int calculateTotalMealSwipes = currentUser.totalSwipes();
+    int calculateTotalMealSwipes = currentUser.totalSwipes;
     
     return MaterialApp(
         home:Scaffold(
@@ -85,42 +82,18 @@ class PaymentState extends State<PaymentPage> {
             ),
         const Padding(
           padding: EdgeInsets.all(40.0),),
-        ListTile(
-          title: const Text('Use Flex Points For Purchase'),
-          titleTextStyle:const TextStyle(
-              fontSize: 20.0,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-         ),
-          leading: Radio<Meal>(
-            value: Meal.flex,
-            groupValue: char,
-            onChanged: (Meal? value) {
-              setState(() {
-                char = value;
-              });
-            },
-          ),
-        ),
-        
-        ListTile(
-          title: const Text('Use Meal Swipe for Purchase'),
-           titleTextStyle:const TextStyle(
-              fontSize: 20.0,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-         ),
-          leading: Radio<Meal>(
-            value: Meal.swipe,
-            groupValue: char,
-            onChanged: (Meal? value) {
-              setState(() {
-                char = value;
-              });
-            },
-          ),
-          
-        ), 
+          ListTile(
+            title: const Text('Make a Favorite Order'),
+            leading: Switch(
+              value: currentUser.isFavorite, 
+              onChanged: (bool value) {
+                setState(() {
+                  currentUser.isFavorite = value;
+                  debugPrint('isFavorite value : ${currentUser.isFavorite}');
+                });
+              }
+            )
+          ), 
         ]
         ),
     )

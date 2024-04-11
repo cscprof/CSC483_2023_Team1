@@ -7,13 +7,16 @@ class ItemClass {
   double price = 0.0; // convert to int
   bool isSwipe = false; // convert to bool
   String descript = "temp_desc";
+  String category = "temp_category";
   Image? icon; // change to different object
+  bool swipeSelectect = false;
+  
   List<SubItemClass> subCategoryItems = []; // all of the potential subItems attached to item
 
   bool isErr = false; // error bit if returned false value
 
-  ItemClass(String n, String p, String s, String d, String i, String subCat) {
-    print('Current item: $n');
+  ItemClass(String n, String p, String s, String d, String i, String subCat, String c) {
+    //print('Current item: $n');
     if (name == 'err') {
       isErr = true;
     }
@@ -22,12 +25,13 @@ class ItemClass {
     isSwipe = s.toLowerCase() == 'true';
     descript = d;
     icon = Image.network(i);
+    category = c;
     
     getSubItem(subCat);
   }
 
   void getSubItem(String s) async {
-    print('subItem tag is $s');
+    //print('subItem tag is $s');
     List<SubItemClass> subItemList = [];
     if (s == "") return; // return nothing if there is not a subCatItem for item
 
@@ -38,7 +42,7 @@ class ItemClass {
         String name = item.child("name").value.toString();
         String icon = item.child("icon").value.toString();
         SubItemClass value = SubItemClass(name, icon);
-        print('Current subItem found: ' + value.name);
+        //print('Current subItem found: ' + value.name);
         subItemList.add(value);
       }
     });
@@ -51,6 +55,7 @@ class ItemClass {
 class SubItemClass {
   String name = " ";
   Image? icon;
+  bool isSelected = false; // if item is selected
 
   SubItemClass (String n, String i) {
     name = n;
@@ -61,7 +66,7 @@ class SubItemClass {
 SubItemClass blankSubItem = SubItemClass('err', 'err');
 
 // error item object
-ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err');
+ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err', 'err');
 
 /*
   itemRead Description:
@@ -75,14 +80,13 @@ ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err');
 */
 
 Future<ItemClass> itemRead(String item) async {
-  print('Item Read: $item');
   List categories = ["drink", "entree", "fruit", "side", "dessert"];
   DatabaseReference itemRef = FirebaseDatabase.instance.ref();
   DataSnapshot event; 
   int i = 0;
-
+  String category = "";
   do { 
-    String category = categories[i];
+    category = categories[i];
     event = await itemRef.child("items/$category/$item").get();
     i++;
     if (i > 5) {
@@ -97,9 +101,9 @@ Future<ItemClass> itemRead(String item) async {
   String descript = event.child("description").value.toString();
   String icon = event.child("icon").value.toString();
   String subCat = event.child("item_custom").value.toString();
-  print('Items subCat: $subCat');
+  //print('Items subCat: $subCat');
 
-  ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat);
+  ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category);
 
   return snapshot;
 }
@@ -117,9 +121,8 @@ Future<ItemClass> itemRead(String item) async {
 */
 Future<List<ItemClass>> categoryRead(String category) async {
   /*
-    error handle when a bad category is inputted
+   TODO error handle when a bad category is inputted
   */
-  print('Category Read');
   List<ItemClass> items = [];
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
   
@@ -130,10 +133,9 @@ Future<List<ItemClass>> categoryRead(String category) async {
       String isSwipe = item.child("isSwipe").value.toString();
       String descript = item.child("description").value.toString();
       String icon = item.child("icon").value.toString();
-      String subCat = item.child("subCat").value.toString();
-      print('Current Sub Category: $subCat');
-
-      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat);
+      String subCat = item.child("item_custom").value.toString();
+      
+      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category);
       items.add(snapshot);
     }
   });
