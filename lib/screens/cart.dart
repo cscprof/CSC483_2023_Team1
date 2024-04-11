@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/payment.dart';
 import 'widgets/headerbar.dart';
-import 'widgets/bottombar.dart';
+import 'widgets/cartbottom.dart';
 import 'dart:math';
 import '../firebase/users.dart';
-import '../firebase/items.dart';
+
 
 
 
@@ -17,7 +17,7 @@ class CartPage extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _CartPageState createState() => _CartPageState();
 }
-
+ 
 class CartItem {
   final String name;
   final double priceInDollars;
@@ -28,6 +28,7 @@ class CartItem {
 /* List<ItemClass> OrdertoCart=[]; */
 
 class _CartPageState extends State<CartPage> {
+   
 
   String calculateEstimatedTime() {
     // Assuming a base time for each item and a random factor for variety
@@ -65,128 +66,136 @@ class _CartPageState extends State<CartPage> {
     // }
 
     return MaterialApp(
-    home: Scaffold(
-      backgroundColor: const Color(0xffFEFFD8),
-      appBar: TopAppBar(AppBar(), "Cart"),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: currentUser.cart.length,
-              itemBuilder: (context, index) {
-                final item = currentUser.cart[index];//widget.cartItems[index];
-                return Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: const Color(0xff2D2D2D),
-                        ),
-                      ),
-                      child: ListTile(
-                        title: Text(item.name),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('isSwipe: ${item.isSwipe.toString()}'),//Text('Meal Swipes: ${item.mealSwipes}'),
-                          ],
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text('\$${item.price} '),//Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
-                            const SizedBox(width: 16),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Call the removeItem function when the button is pressed
-                                removeItem(index);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red, // Set the background color to red
-                              ),
-                              child: const Text('Remove'),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Column(
+  home: Scaffold(
+    backgroundColor: const Color(0xffFEFFD8),
+    appBar: TopAppBar(AppBar(), "Cart"),
+    body: Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: widget.cartItems.length,
+            itemBuilder: (context, index) {
+              final item = widget.cartItems[index];
+              return Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Total in Dollars & Flex: \$${total.toStringAsFixed(2)}',
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 2,
+                        color: const Color(0xffCB9700),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Total Meal Swipes: \$${calculateTotalMealSwipes.toStringAsFixed(2)}',
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    child: ListTile(
+                      title: Text(item.name),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Meal Swipes: ${item.mealSwipes}'),
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
+                          const SizedBox(width: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Call the removeItem function when the button is pressed
+                              removeItem(index);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red, // Set the background color to red
+                            ),
+                            child: const Text('Remove'),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Your Order will take around: ${calculateEstimatedTime()} minutes',
-                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                     ),
                   ),
                 ],
+              );
+            },
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Total in Dollars & Flex: \$${total.toStringAsFixed(2)}',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Total Meal Swipes: \$${calculateTotalMealSwipes.toStringAsFixed(2)}',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Your Order will take around: ${calculateEstimatedTime()} minutes',
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: ()                      
-              {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const PaymentPage())
-                );
-                // Implement the functionality to proceed to checkout
-                // You can navigate to a checkout page or perform any other action
-                // based on the items in the cart.
-                // For simplicity, let's just print a message for now.
-                //print('Proceed to Checkout');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black, // Set the background color to black
-              ),
-              child: const Text('Proceed to Checkout',
-              style: TextStyle(color: Colors.white),
-              // Set the text color to white
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-      bottomNavigationBar: BottomBar(AppBar(), WhichPage.home),
     ),
-  );
+
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ElevatedButton(
+            onPressed: () { {                       
+  {
+      Navigator.push(
+          context, 
+     MaterialPageRoute(builder: (context) => const PaymentPage())
+                     );
+  }
+               }
+      // Implement the functionality to proceed to checkout
+      // You can navigate to a checkout page or perform any other action
+      // based on the items in the cart.
+      // For simplicity, let's just print a message for now.
+      //print('Proceed to Checkout');
+                },
+            style: ElevatedButton.styleFrom(
+            backgroundColor : const Color(0xffCB9700)// Set the background color to black
+          ),
+            child: const Text('Proceed to Checkout',
+            style: TextStyle(color: Colors.white),
+             
+            // Set the text color to white
+            ),
+          ),
+        ),
+      ],
+    ),
+    bottomNavigationBar: CartBottomBar(AppBar(), WhichPage.home),
+  ),
+);
+
   }
 }
 

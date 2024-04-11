@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:brig_project/screens/customization.dart';
 import 'package:flutter/material.dart';
 import '../../firebase/items.dart';
@@ -7,7 +8,7 @@ class Subcat1ListView extends StatelessWidget {
   final Future<List<ItemClass>> itemsFuture;
   final String selectedCategory;
 
-  const Subcat1ListView({required this.itemsFuture, required this.selectedCategory, Key? key}) : super(key: key);
+  const Subcat1ListView({required this.itemsFuture, required this.selectedCategory, super.key});
 
   @override
   Widget build(BuildContext context) {

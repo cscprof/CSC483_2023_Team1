@@ -32,14 +32,14 @@ class PaymentState extends State<PaymentPage> {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/backgroundColor.png"),
+                  image: AssetImage("assets/images/backgroundColor.png"),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
              Positioned(
-              top: 20,
-              left: MediaQuery.of(context).size.width / 3,
+              top: 50,
+              left: MediaQuery.of(context).size.width / 13,
               child: Image.asset(
                 "assets/images/tornadoTransparent.png",
                 width: 400,
@@ -48,11 +48,11 @@ class PaymentState extends State<PaymentPage> {
             ),
                Positioned(
               top: 200,
-              left: MediaQuery.of(context).size.width / 5,
+              left: MediaQuery.of(context).size.width / 4.5,
               child: Image.asset(
                 "assets/images/wordBrig.png",
-                width: 700,
-                height: 500,
+                width: 500,
+                height: 300,
               ),
             ),
            Center(
@@ -74,10 +74,11 @@ class PaymentState extends State<PaymentPage> {
              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
           ),
         ),  
+        const SizedBox(height:200),
          const Padding(
           padding: EdgeInsets.all(20.0),),
            const Text( 
-           'After submission, your order cannot be modified',
+           '   After submission, your order cannot be modified',
             
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
           
@@ -86,7 +87,11 @@ class PaymentState extends State<PaymentPage> {
           padding: EdgeInsets.all(40.0),),
         ListTile(
           title: const Text('Use Flex Points For Purchase'),
-          
+          titleTextStyle:const TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+         ),
           leading: Radio<Meal>(
             value: Meal.flex,
             groupValue: char,
@@ -100,7 +105,11 @@ class PaymentState extends State<PaymentPage> {
         
         ListTile(
           title: const Text('Use Meal Swipe for Purchase'),
-          
+           titleTextStyle:const TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+         ),
           leading: Radio<Meal>(
             value: Meal.swipe,
             groupValue: char,

@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'widgets/bottombar.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage ({Key? key}) : super(key: key);
+  const SettingsPage ({super.key});
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -31,7 +31,8 @@ class _SettingsPageState extends State<SettingsPage> {
       data: night ? ThemeData.dark() : ThemeData.light(),
       child: Scaffold(
         appBar: SettingsAppBar(AppBar(), 'Settings'),
-        body: Center(
+        body: 
+        Center( 
             child: ListView(               
                   children: [           
                     ListTile(

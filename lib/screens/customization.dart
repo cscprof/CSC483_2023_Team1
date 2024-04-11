@@ -4,7 +4,7 @@ import 'widgets/customizationWidget.dart';
 
 class CustomizationPage extends StatelessWidget {
   final String selectedCustomization; // the selected menu item
-  const CustomizationPage({required this.selectedCustomization, Key? key}) : super(key: key);
+  const CustomizationPage({required this.selectedCustomization, super.key});
 
   @override
   Widget build(BuildContext context) {
