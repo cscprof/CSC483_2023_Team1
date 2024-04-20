@@ -173,7 +173,7 @@ class _CartPageState extends State<CartPage> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Text(
-                      'Your Order will take around: ${calculateEstimatedTime()} minutes',
+                      'Your Order will take around: ${currentUser.calcEstTime()} minutes',
                           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                      ),
                   ),

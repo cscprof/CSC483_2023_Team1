@@ -17,7 +17,7 @@ class PaymentState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
-    double total = currentUser.totalPrice();
+    double total = currentUser.priceWithoutFlex();  
     int calculateTotalMealSwipes = currentUser.totalSwipes;
     
     return MaterialApp(

@@ -50,7 +50,7 @@ class ConfirmPage extends StatelessWidget {
              Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-          '   Order No.' "232" " was accepted and cannot be modified"  ' Your estimated wait time is: ${calculateEstimatedTime()} minutes',
+          '   Order No.' "232" " was accepted and cannot be modified"  ' Your estimated wait time is: ${currentUser.calcEstTime()} minutes',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
               ),
             ),

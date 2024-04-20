@@ -86,8 +86,8 @@ Future<List<OrderClass>> getPastOrders(String name) async {
     String? orderID = usersOrder.orderID;
     var itemRef = await userRef.child("orders/$name/$orderID/items").get(); 
     if (!itemRef.exists) {
-      debugPrint('breaking');
-      break;
+      debugPrint('breaking - itemRef does not exist');
+      return orders;
     }
     int j = 0;
     do { // get every item in saved orders
@@ -101,6 +101,7 @@ Future<List<OrderClass>> getPastOrders(String name) async {
     orders.add(usersOrder);
     i++;
   } while (order.child("order$i").exists);
+  debugPrint('got ${orders.length} orders');
   return orders;
 }
 
@@ -136,7 +137,7 @@ Future<void> addNewOrder(OrderClass order) async {
     "order$i" : {
       "favorite" : order.isFavorite,
       "last_ordered" : DateTime.now().toString(), 
-      "items" : {}
+      "items" : {},      
     }
   });
   // add the items individually in the "items" part of the order

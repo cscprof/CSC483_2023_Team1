@@ -10,12 +10,13 @@ class ItemClass {
   String category = "temp_category";
   Image? icon; // change to different object
   bool swipeSelectect = false;
+  double timeWeight = 0.0;
   
   List<SubItemClass> subCategoryItems = []; // all of the potential subItems attached to item
 
   bool isErr = false; // error bit if returned false value
 
-  ItemClass(String n, String p, String s, String d, String i, String subCat, String c) {
+  ItemClass(String n, String p, String s, String d, String i, String subCat, String c, String w) {
     //print('Current item: $n');
     if (name == 'err') {
       isErr = true;
@@ -26,6 +27,7 @@ class ItemClass {
     descript = d;
     icon = Image.network(i);
     category = c;
+    timeWeight = double.parse(w);
     
     getSubItem(subCat);
   }
@@ -66,7 +68,7 @@ class SubItemClass {
 SubItemClass blankSubItem = SubItemClass('err', 'err');
 
 // error item object
-ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err', 'err');
+ItemClass errorItem = ItemClass('err', '0.0', 'false', 'err', 'err', 'err', 'err', 'err');
 
 /*
   itemRead Description:
@@ -101,9 +103,10 @@ Future<ItemClass> itemRead(String item) async {
   String descript = event.child("description").value.toString();
   String icon = event.child("icon").value.toString();
   String subCat = event.child("item_custom").value.toString();
+  String timeWeight = event.child("timeWeight").value.toString();
   //print('Items subCat: $subCat');
 
-  ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category);
+  ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category, timeWeight);
 
   return snapshot;
 }
@@ -134,8 +137,9 @@ Future<List<ItemClass>> categoryRead(String category) async {
       String descript = item.child("description").value.toString();
       String icon = item.child("icon").value.toString();
       String subCat = item.child("item_custom").value.toString();
+      String timeWeight = item.child("timeWeight").value.toString();
       
-      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category);
+      ItemClass snapshot = ItemClass(name, price, isSwipe, descript, icon, subCat, category, timeWeight);
       items.add(snapshot);
     }
   });
