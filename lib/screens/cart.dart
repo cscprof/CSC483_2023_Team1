@@ -57,7 +57,7 @@ class _CartPageState extends State<CartPage> {
 
     return MaterialApp(
     home: Scaffold(
-      backgroundColor: const Color.fromARGB(255, 179, 179, 179),
+      backgroundColor: const Color(0xffFEFFD4),
       appBar: TopAppBar(AppBar(), "Cart"),
       body: Column(
         children: [
@@ -86,7 +86,10 @@ class _CartPageState extends State<CartPage> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text('\$${item.price} '),//Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
+                            
+                            Text('\$${item.price} ', 
+              style: const TextStyle(fontSize: 18,)
+              ),//Text('\$${item.priceInDollars.toStringAsFixed(2)}'),
                             const SizedBox(width: 16),
                             Checkbox(
                               value: currentUser.cart[index].swipeSelectect,
@@ -126,7 +129,7 @@ class _CartPageState extends State<CartPage> {
                                   );
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.red, // Set the background color to red
+                                backgroundColor: const Color.fromARGB(255, 225, 86, 86), // Set the background color to red
                               ),
                               child: const Text('Remove'),
                             ),
@@ -145,12 +148,12 @@ class _CartPageState extends State<CartPage> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Color(0xffCB9700), 
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: const Offset(0, 3),
+                    offset: Offset(0, 3),
                   ),
                 ],
               ),

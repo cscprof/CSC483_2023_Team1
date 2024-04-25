@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings
+// ignore_for_file: prefer_interpolation_to_compose_strings, avoid_print
 
 import 'package:flutter/material.dart';
 import 'widgets/customizationWidget.dart';
@@ -8,7 +8,7 @@ import 'package:brig_project/screens/widgets/orderbottom.dart';
 class CustomizationPage extends StatelessWidget {
   //final String selectedCustomization; // the selected menu item
   final ItemClass selectedItem;
-  const CustomizationPage({required this.selectedItem, Key? key}) : super(key: key);
+  const CustomizationPage({required this.selectedItem, super.key});
   
   @override
   Widget build(BuildContext context) {

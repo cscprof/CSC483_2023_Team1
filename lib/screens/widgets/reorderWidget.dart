@@ -86,7 +86,7 @@ class ReorderWidget extends StatelessWidget {
                                   //       style: TextButton.styleFrom(foregroundColor: Colors.black,), 
                                   //       child: const Text(
                                   //         'Details',
-                                  //         // TODO - should we have the list of items under the details tab?
+                                  //    
                                   //         style: TextStyle(decoration: TextDecoration.underline,),
                                   //       ),
                                   //     ),
