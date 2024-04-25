@@ -1,3 +1,4 @@
+import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
 import 'package:brig_project/screens/widgets/orderbottom.dart';
 import '../data/itemdata.dart';
@@ -25,7 +26,10 @@ class SubCat1Page extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_rounded),
             onPressed: () {
               // Navigate back to the main subcategory selection
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const OrderPage(),
+              ));
             },
             ),
         ),

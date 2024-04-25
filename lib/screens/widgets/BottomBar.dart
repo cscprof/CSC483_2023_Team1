@@ -15,7 +15,7 @@ import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
 //import 'package:brig_project/screens/cart.dart';
 //import 'package:flutter/services.dart';
-
+import 'package:brig_project/firebase/users.dart'; 
 
 enum WhichPage { home, checkout, order, subCat, menu }
 
@@ -92,8 +92,25 @@ BottomNavigationBarItem menuBTN () {
 }
 
 BottomNavigationBarItem cartBTN () {
-  return const BottomNavigationBarItem(
-    icon: Icon(Icons.shopping_cart),
+  debugPrint('using bottom navigation bar - cart size ${currentUser.cart.length}');
+  return BottomNavigationBarItem(
+    icon: Stack(
+      children: [
+        const Icon(Icons.shopping_cart),
+        if (currentUser.cart.isNotEmpty)
+          Positioned(
+            right: 0,
+            child: CircleAvatar(
+              radius: 8,
+              backgroundColor: Colors.red,
+              child: Text(
+                currentUser.cart.length.toString(),
+                style: const TextStyle(fontSize: 10, color: Colors.white),
+              ),
+            ),
+         ),
+      ],
+    ),
     label: 'Cart',
   );
 }
