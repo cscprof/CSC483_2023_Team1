@@ -86,7 +86,7 @@ class _CustomizationListViewState extends State<CustomizationListView> {
                   context,
                   MaterialPageRoute(builder: (context) => const OrderPage()),
                 );
-                currentUser.cart.add(widget.itemCustomize); // add to cart
+                // currentUser.cart.add(widget.itemCustomize); // add to cart
                 debugPrint('Submit button pressed! Adding item with customizations to cart.');
               },
               style: ButtonStyle(

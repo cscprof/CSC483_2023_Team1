@@ -76,6 +76,14 @@ class _CartPageState extends State<CartPage> {
                         ),
                       ),
                       child: ListTile(
+                        leading: SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(35),
+                            child: item.icon,
+                          ),
+                        ),
                         title: Text(item.name),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +108,9 @@ class _CartPageState extends State<CartPage> {
                                 }); 
                               },
                             ),
-                            ElevatedButton(
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              color: const Color.fromARGB(255, 225, 86, 86),
                               onPressed: () {
                                 showDialog(
                                     context: context,
@@ -128,10 +138,11 @@ class _CartPageState extends State<CartPage> {
                                     },
                                   );
                               },
-                              style: ElevatedButton.styleFrom(
+                              /* style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(255, 225, 86, 86), // Set the background color to red
-                              ),
-                              child: const Text('Remove'),
+                              ), */
+                              // child: const Text('Remove'),
+                              
                             ),
                           ],
                         ),

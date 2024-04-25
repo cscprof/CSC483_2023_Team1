@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../firebase/users.dart';
 
+bool _isObscured = true;
+
 //* A lovely friend from stack overlow is the source of the Alert Dialog Code
 showAlertDialog(BuildContext context) {
 
@@ -150,24 +152,25 @@ class _LoginPageState extends State<LoginPage> {
                   ),  
                      
                 ),
-              
+            
                 const SizedBox(height:20),
                 SizedBox(
                   width: 250,
-                  child: TextFormField(           
+                  child: TextFormField(
                     controller: passwordController,
-
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                    obscureText: _isObscured,
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
                       labelText: 'PIN:',
-                       
-                       icon: IconButton(onPressed: launchURLApp ,icon: Icon(Icons.remove_red_eye_sharp))
-
-                      
-
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isObscured = !_isObscured;
+                          });
+                        },
+                      icon: Icon(_isObscured ? Icons.visibility : Icons.visibility_off),
+                      ),
                     ),
-                    
                   ),
                 
                 ),
@@ -216,7 +219,4 @@ class _LoginPageState extends State<LoginPage> {
       )
     );
   }   
-
-
- 
 }
