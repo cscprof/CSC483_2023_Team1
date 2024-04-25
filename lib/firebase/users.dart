@@ -22,6 +22,7 @@ class UserClass  {
   
   void retrieveOrders() async {
     pastOrders = await getPastOrders(name);
+    debugPrint('Got ${pastOrders.length} orders');
     for(int i = 0; i < pastOrders.length; i++) {
       if(pastOrders[i].isFavorite) {
         favoriteOrders.add(pastOrders[i]);
@@ -74,25 +75,25 @@ class UserClass  {
     return total;
   }
 
-  // int totalSwipes() {
-  //   int total = 0;
-  //   Map<String, int> numInCategory = {
-  //     "dessert" : 0,
-  //     "drink" : 0,
-  //     "entree" : 0,
-  //     "fruit" : 0,
-  //     "side" : 0
-  //   };
-  //   // update each value in map if the item is swipeable
-  //   for(int i = 0; i < cart.length; i++) {
-  //     if(cart[i].isSwipe) {
-  //       numInCategory.update(cart[i].category, (value) => value++);
-  //     }
-  //   }
-  //   // how to denote which 
+  double priceWithoutFlex() {
+    double output = 0.0;
+    for (int i = 0; i < cart.length; i++) {
+      if (!cart[i].swipeSelectect) {
+        output += cart[i].price;
+      }
+    }
+    return output;
+  }
 
-  //   return total;
-  // }
+  double calcEstTime() {
+    double output = 0;
+    for(int i = 0; i < cart.length; i++) {
+      output += cart[i].timeWeight;
+    }
+    double tens = output * 100;
+    double trunk = tens.truncate() as double;
+    return trunk / 100;
+  }
 
   void clearCart() { // maybe stupid but trying to make reading easy -- can adjust if speed is needed
     cart.clear();

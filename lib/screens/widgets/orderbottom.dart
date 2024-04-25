@@ -1,7 +1,9 @@
 import 'package:brig_project/screens/cart.dart';
 import 'package:brig_project/screens/home.dart';
 import 'package:brig_project/screens/order.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:brig_project/firebase/users.dart';
 //import 'package:brig_project/screens/cart.dart';
 //import 'package:flutter/services.dart';
 
@@ -82,8 +84,46 @@ BottomNavigationBarItem menuBTN () {
 }
 
 BottomNavigationBarItem cartBTN () {
-  return const BottomNavigationBarItem(
-    icon: Icon(Icons.shopping_cart),
+  debugPrint('using orderbottom bar - cart size ${currentUser.cart.length}');
+  return BottomNavigationBarItem(
+     icon: Stack(
+      children: [
+        const Icon(Icons.shopping_cart),
+        if (currentUser.cart.isNotEmpty)
+          Positioned(
+            right: 0,
+            child: CircleAvatar(
+              radius: 8,
+              backgroundColor: Colors.red,
+              child: Text(
+                currentUser.cart.length.toString(),
+                style: const TextStyle(fontSize: 10, color: Colors.white),
+              ),
+            ),
+         ),
+      ],
+    ),
+    // icon: Stack(
+    //   children: [
+    //     const Icon(Icons.shopping_cart),
+    //     ValueListenableBuilder(
+    //       valueListenable: currentUser.cart.length as ValueListenable, 
+    //       builder: (context, value, widget) {
+    //         return Positioned(
+    //           right: 0,
+    //           child: CircleAvatar(
+    //             radius: 8,
+    //             backgroundColor: Colors.red,
+    //             child: Text(
+    //               currentUser.cart.length.toString(),
+    //               style: const TextStyle(fontSize: 10, color: Colors.white),
+    //             ),
+    //           ),
+    //         );
+    //       }          
+    //     )
+    //   ],
+    // ),
     label: 'Cart',
   );
 }

@@ -80,24 +80,6 @@ class Subcat1ListView extends StatelessWidget {
                       debugPrint('Does not have customizations!!');
                     }
                     currentUser.cart.add(items[index]);
-                    
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Add Item"),
-                          content: const Text("You added an Item to your cart."),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("OK"),
-                              onPressed: () {
-                                Navigator.of(context, rootNavigator: true).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
                   },
                   child: const Text('Add'),
                 ),

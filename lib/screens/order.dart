@@ -11,6 +11,7 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('in order page');
     return MaterialApp(
       title: "Order Page",
       home: Scaffold(
