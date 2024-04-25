@@ -4,7 +4,6 @@
 import 'package:brig_project/screens/order.dart';
 import 'package:flutter/material.dart';
 import '../../firebase/items.dart';
-import '../../firebase/users.dart';
 
 class CustomizationListView extends StatefulWidget {
   final ItemClass itemCustomize;

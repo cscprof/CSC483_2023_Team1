@@ -33,11 +33,13 @@ migrate_working_dir/
 /build/
 pubspec.lock
 pubspec.yaml
-/ios/Podfile
-/ios/Podfile.lock
-/ios/Runner/Info.plist
-/ios/Runner.xcodeproj/project.pbxproj
-/ios/Runner.xcodeproj/xcshareddata/xcshemes/Runner.xcscheme
+
+#ios specific
+ios/Podfile*
+ios/Podfile.lock
+ios/Runner/Info.plist
+ios/Runner.xcodeproj/project.pbxproj
+ios/Runner.xcodeproj/xcshareddata/xcshemes/Runner.xcscheme
 
 # Symbolication related
 app.*.symbols
