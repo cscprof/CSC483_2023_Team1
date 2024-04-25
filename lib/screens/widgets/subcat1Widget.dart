@@ -1,4 +1,3 @@
-// ignore: file_names
 import 'package:brig_project/screens/customization.dart';
 import 'package:flutter/material.dart';
 import '../../firebase/items.dart';
@@ -78,8 +77,8 @@ class Subcat1ListView extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text("Add Item"),
-                          content: Text("You added an Item to your cart."),
+                          title: const Text("Add Item"),
+                          content: const Text("You added an Item to your cart."),
                           actions: <Widget>[
                             TextButton(
                               child: const Text("OK"),

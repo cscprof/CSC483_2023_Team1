@@ -1,4 +1,6 @@
 // import 'package:brig_project/screens/cart.dart';
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:brig_project/screens/order.dart';
 //import 'package:brig_project/screens/subcat1.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,7 @@ import '../../firebase/users.dart';
 
 class CustomizationListView extends StatefulWidget {
   final ItemClass itemCustomize;
-  CustomizationListView({required this.itemCustomize, Key? key}) : super(key: key);
+  const CustomizationListView({required this.itemCustomize, super.key});
 
   @override
   _CustomizationListViewState createState() => _CustomizationListViewState();

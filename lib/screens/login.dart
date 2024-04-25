@@ -90,6 +90,8 @@ TextEditingController passwordController = TextEditingController();
 
 class _LoginPageState extends State<LoginPage> {
   bool night = false;
+  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp( 
@@ -142,20 +144,32 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Student ID:',
+                 
                     ),
-                  ),     
+                     
+                  ),  
+                     
                 ),
+              
                 const SizedBox(height:20),
                 SizedBox(
                   width: 250,
                   child: TextFormField(           
                     controller: passwordController,
+
                     obscureText: true,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'PIN:',
+                       
+                       icon: IconButton(onPressed: launchURLApp ,icon: Icon(Icons.remove_red_eye_sharp))
+
+                      
+
                     ),
+                    
                   ),
+                
                 ),
                 const SizedBox(height:50),
                 ElevatedButton(
@@ -202,4 +216,7 @@ class _LoginPageState extends State<LoginPage> {
       )
     );
   }   
+
+
+ 
 }
