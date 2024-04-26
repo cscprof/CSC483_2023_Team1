@@ -77,7 +77,7 @@ Future<List<OrderClass>> getPastOrders(String name) async {
   // TODD - get only 5 most recent based on ti
   DatabaseReference userRef = FirebaseDatabase.instance.ref();
   final order = await userRef.child("orders/$name").get(); 
-  // !! TODO - if the user does not have a past order it crashes
+ 
   debugPrint('Running getPastOrders for $name');
   List<OrderClass> orders = [];  
   int i = 0;
@@ -107,6 +107,7 @@ Future<List<OrderClass>> getPastOrders(String name) async {
 
 Future<void> addNewOrder(OrderClass order) async {
   debugPrint("Adding order: ${order.orderID} for ${order.user}");
+  // ignore: avoid_function_literals_in_foreach_calls
   order.items.forEach((element) {
     debugPrint('Item : ${element.name}');
   },);

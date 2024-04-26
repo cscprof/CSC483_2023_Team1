@@ -38,7 +38,7 @@ class UserClass  {
   }
 
   void updateFlex(double flex) async {
-    // TODO : need to change the logic to just be the remaining values
+   
     
     DatabaseReference userRef = FirebaseDatabase.instance.ref('users/');
     final userFlex = await userRef.child(currentUser.name).get();
@@ -207,10 +207,10 @@ void updateFlex(String user, double flex) {
   // update flex of user to new value
 }
 
-// TODO - testing adding users to firebase
+
 Future<void> customNewUser(String user, String password, int flex, String role, int swipes) async {
   DatabaseReference usersRef = FirebaseDatabase.instance.ref("users");
-  // TODO case for when the user & password does not work
+
   await usersRef.update({
     user : { // what do I do about the specifics of a standard new user, and a custom new user
       "name": user,

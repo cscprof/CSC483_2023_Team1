@@ -1,4 +1,6 @@
 //import 'package:brig_project/screens/notificationspage.dart';
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -124,7 +126,7 @@ Future<ItemClass> itemRead(String item) async {
 */
 Future<List<ItemClass>> categoryRead(String category) async {
   /*
-   TODO error handle when a bad category is inputted
+  
   */
   List<ItemClass> items = [];
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("items/$category");
@@ -147,7 +149,7 @@ Future<List<ItemClass>> categoryRead(String category) async {
   return items;
 }
 
-// TODO :: create a function that will add key (subCat) and value (" ")
+
 Future<void> addItemCustom(String category, List<String> items) async {
   DatabaseReference categoryRef = FirebaseDatabase.instance.ref("item_custom/$category");
   for(int i = 0; i < items.length; i++) {
